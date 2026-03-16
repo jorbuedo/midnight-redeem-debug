@@ -1,0 +1,17 @@
+{
+  "name": "midnight-debug",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "description": "Midnight NIGHT token debug CLI - compares on-chain reality vs API-reported status",
+  "scripts": {
+    "start": "bun src/index.ts",
+    "db:export": "bash scripts/export-db.sh",
+    "db:import": "bash scripts/import-db.sh"
+  },
+  "devDependencies": {
+    "@types/bun": "1.2.19",
+    "@types/node": "25.0.9",
+    "typescript": "5.9.3"
+  }
+}
