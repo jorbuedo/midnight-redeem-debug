@@ -4255,4 +4255,4 @@ These issues are **not correlated** with shared escrow addresses or dirty fundin
 | [addr1q9ktu9njggamatknkd35ltwr9arh4mm2hqezdepfwxfg82d70k2d8cqdjx6fpar5psurj67chqzzd2wkkgdg23mgh9tsrt2znm](https://mainnet.prod.gd.midnighttge.io/thaws/addr1q9ktu9njggamatknkd35ltwr9arh4mm2hqezdepfwxfg82d70k2d8cqdjx6fpar5psurj67chqzzd2wkkgdg23mgh9tsrt2znm/schedule) | Thaw #0: redeemable, no tx_id, but 0.572433 NIGHT delivered 1x on-chain vs 0 confirmed | [4e929f715f39...](https://cexplorer.io/tx/4e929f715f391749a647fa3e22e1d626cc7b44a55c159ffe1ea9d678556c6ea2) |
 
 ---
-*Generated at 2026-03-16T18:22:01.279Z | Last synced block: 13167325*
+*Generated at 2026-03-16T22:31:31.420Z | Last synced block: 13167325*
