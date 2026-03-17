@@ -6,6 +6,14 @@
   "description": "Midnight NIGHT token debug CLI - compares on-chain reality vs API-reported status",
   "scripts": {
     "start": "bun src/index.ts",
+    "sync": "bun src/index.ts sync",
+    "fetch-txs": "bun src/index.ts fetch-txs",
+    "fetch-escrows": "bun src/index.ts fetch-escrows",
+    "fetch-schedules": "bun src/index.ts fetch-schedules",
+    "report": "bun src/index.ts report",
+    "report:md": "bun src/index.ts report --format markdown",
+    "report:html": "bun src/index.ts report --format html",
+    "status": "bun src/index.ts status",
     "db:export": "bash scripts/export-db.sh",
     "db:import": "bash scripts/import-db.sh"
   },

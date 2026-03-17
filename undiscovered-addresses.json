@@ -1,0 +1,14 @@
+[
+  {
+    "address": "addr1qx0pr8xdveaqj22c3wksqaep3g5adpkwufmxujzcylc5p07suvcssqkmywwzc0f9l7uyuy8ds9xxa322hnamgvt274as2u7yfy",
+    "failedTxHash": "64ce545452606f27c2265e2ea5071b33e195f2e64a2d1a130bd0bff44617bfab",
+    "thaws": [
+      { "index": 1, "amount": 187.844699, "status": "failed", "date": "2026-02-24" },
+      { "index": 2, "amount": 187.844699, "status": "upcoming", "date": "2026-05-25" },
+      { "index": 3, "amount": 187.844699, "status": "upcoming", "date": "2026-08-23" },
+      { "index": 4, "amount": 187.844702, "status": "upcoming", "date": "2026-11-21" }
+    ],
+    "claimedAllocations": 0,
+    "reportedAt": "2026-03-17"
+  }
+]
