@@ -109,9 +109,30 @@ Evidence:
 - No thaw #3 has been claimed on-chain because the earliest thaw #3 date (2026-06-08) is still in the future.
 - Chaining multiple thaw redeems in one tx is impossible: each tx creates a new escrow UTxO whose datum gates the next spend to a future date.
 
-## Transaction specification for our user's thaw #2
+## Thaw #2: successfully redeemed (2026-03-18)
 
-### Escrow UTxO to spend
+Thaw #2 was successfully redeemed by building the escrow spend transaction directly in Yoroi, bypassing the broken Midnight backend entirely.
+
+- **Redeem tx:** [`c91eca66f9e676b344c08f5214ad90d51c10ce7d0dc310d70ced74847e368dce`](https://cexplorer.io/tx/c91eca66f9e676b344c08f5214ad90d51c10ce7d0dc310d70ced74847e368dce)
+- **Escrow UTxO spent:** `c62490e56a1d0fa915db2bfa328e0624167a15a55193ae6d4efb99b3a345a1c3#2` (119,074.057221 NIGHT)
+- **NIGHT delivered:** 39,691.352407 NIGHT to eligible address
+- **Escrow change:** 79,382.704814 NIGHT back to escrow (2 thaws remaining)
+
+### Midnight API behavior after thaw #2
+
+The schedule API correctly detected the second thaw as `confirmed` — but still shows thaw #1 as `failed` with the wrong tx_id. This confirms that the backend's confirmation detection works for new transactions going forward, but it never reconciles historical mislabeled statuses.
+
+Current [schedule](https://mainnet.prod.gd.midnighttge.io/thaws/addr1qy0rpmsd9wz0x85esg03uhjscc6v0akwydpxy28cpwtpnzskgwn49c4sg0s6sj783fe3t0alqfsn3rkewv7wsghharuq32lx5c/schedule) state:
+- Thaw #1: `failed` (incorrect — was successful on-chain)
+- Thaw #2: `confirmed` (correct)
+- Thaw #3: `upcoming`
+- Thaw #4: `upcoming`
+
+## Transaction specification for thaw #2 (historical reference)
+
+The specification below was used to plan the thaw #2 redemption. Kept for reference since thaw #3 and #4 follow the same pattern.
+
+### Escrow UTxO spent
 
 | Field | Value |
 |---|---|
@@ -120,7 +141,7 @@ Evidence:
 | NIGHT | 119,074,057,221 (119,074.057221 NIGHT) |
 | ADA | ~1,698,140 lovelace |
 
-### Current escrow datum
+### Escrow datum at time of spend
 
 | Field | Value |
 |---|---|
@@ -156,7 +177,7 @@ Evidence:
 **Redeemer:** `Constr(0, [])` → CBOR hex `d87980`
 
 **Validity interval:**
-- `invalid_before`: any slot after 2026-03-10 00:00:00 UTC (slot ~186,459,309). We're past this.
+- `invalid_before`: any slot after 2026-03-10 00:00:00 UTC (slot ~186,459,309).
 - Shelley slot formula: `slot = unix_seconds - 1591566291 + 4924800`
 
 **Collateral:** ~5 ADA from funder wallet
@@ -165,7 +186,7 @@ Evidence:
 - Memory: ~870,000 units
 - Steps: ~213,000,000 units
 
-### Updated escrow datum CBOR
+### Updated escrow datum CBOR (now current on-chain)
 
 ```
 d8799f                                          -- Constr(0, [
@@ -194,18 +215,19 @@ Full hex: `d8799fd8799fd8799f581c1e30ee0d2b84f31e99821f1e5e50c634c7f6ce23426228f
 
 ## Remaining thaw schedule
 
-| Thaw | NIGHT | Available | Status |
-|---|---|---|---|
-| #1 | 39,691.352407 | 2025-12-10 | Claimed (tx `c62490e5...`) |
-| #2 | 39,691.352407 | 2026-03-10 | **Claimable now** |
-| #3 | 39,691.352407 | 2026-06-08 | Locked (future date) |
-| #4 | 39,691.352407 | 2026-09-06 | Locked (future date) |
+| Thaw | NIGHT | Available | Status | Notes |
+|---|---|---|---|---|
+| #1 | 39,691.352407 | 2025-12-10 | Claimed (tx `c62490e5...`) | API incorrectly shows `failed` |
+| #2 | 39,691.352407 | 2026-03-10 | Claimed (tx `c91eca66...`) | Redeemed manually via Yoroi, API shows `confirmed` |
+| #3 | 39,691.352407 | 2026-06-08 | Locked (future date) | Same escrow spend pattern applies |
+| #4 | 39,691.352407 | 2026-09-06 | Locked (future date) | Same escrow spend pattern applies |
 
 ## Verified reference transactions
 
 | Description | Tx Hash | Block |
 |---|---|---|
 | Our user's first thaw (treasury spend) | `c62490e56a1d0fa915db2bfa328e0624167a15a55193ae6d4efb99b3a345a1c3` | 13,001,236 |
+| **Our user's second thaw (escrow spend, manual via Yoroi)** | `c91eca66f9e676b344c08f5214ad90d51c10ce7d0dc310d70ced74847e368dce` | — |
 | Confirmed second thaw (escrow spend, different address) | `2db0b74912c7e123c9b484c9f8da9270d86cb79a069ea8f117573653789aa18f` | 13,139,266 |
 | First thaw for the above address (for comparison) | `4779cea08f234f22c29a2735f071cc72e76746caf8a48c0c525652752ad12723` | — |
 | Reference script UTxO (PlutusV3 escrow script) | `da17a0e51e8374fafa9977c5bddf4bc35af2eb53bda52dfc8b38c451e7e150f1#0` | — |
@@ -213,8 +235,10 @@ Full hex: `d8799fd8799fd8799f581c1e30ee0d2b84f31e99821f1e5e50c634c7f6ce23426228f
 
 ## Implementation notes
 
+- The escrow spend approach has been **validated in production** — thaw #2 was successfully redeemed on 2026-03-18 by building the tx directly in Yoroi.
 - The transaction can be built with `cardano-cli transaction build` or any Cardano tx builder library (e.g., Lucid, MeshJS, cardano-serialization-lib).
 - No special signing is required beyond the funder's key (the escrow script validates from the datum, not signatures).
-- The escrow UTxO must still exist (not yet spent). Verify with `cardano-cli query utxo --address addr1z9vcd07...` or Koios API before building.
+- The escrow UTxO must still exist (not yet spent). After each thaw, a new escrow UTxO is created in the redeem tx outputs — use that for the next thaw.
 - The `invalid_before` field is critical — without it the script cannot verify the current time.
 - Execution units should be estimated via `cardano-cli transaction build` (which runs the script in simulation) rather than hardcoded.
+- The Midnight backend will correctly detect manually-submitted thaw transactions as `confirmed`, even though it never fixes historical mislabeled statuses.

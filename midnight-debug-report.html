@@ -83,19 +83,19 @@
 <div class="section">
   <h2>Key Findings</h2>
   <div class="finding">
-    <p>Analysis of <strong>50,154</strong> eligible addresses, <strong>50,154</strong> API schedules, and <strong>52,991</strong> on-chain transactions reveals a <strong>single root cause</strong> manifesting as multiple symptoms:</p>
+    <p>Analysis of <strong>50,589</strong> eligible addresses, <strong>50,589</strong> API schedules, and <strong>53,435</strong> on-chain transactions reveals a <strong>single root cause</strong> manifesting as multiple symptoms:</p>
     <p><strong>The Midnight backend fails to recognize successful on-chain thaw transactions.</strong> When a first-thaw claim succeeds on-chain but the backend marks it as <code>skipped</code> or <code>failed</code>, three things happen:</p>
     <ol>
-      <li><strong>295 addresses</strong> have thaw #0 marked <code>skipped</code> despite all 295 having a successful on-chain redeem transaction</li>
+      <li><strong>314 addresses</strong> have thaw #0 marked <code>skipped</code> despite all 314 having a successful on-chain redeem transaction</li>
       <li><strong>234 addresses</strong> have thaw #1 amounts inflated because the backend rolled the "unclaimed" amount forward</li>
-      <li><strong>3642 thaws</strong> show as "redeemable" in the API but the NIGHT was already delivered on-chain &mdash; users see a claim button for tokens they already received</li>
+      <li><strong>3680 thaws</strong> show as "redeemable" in the API but the NIGHT was already delivered on-chain &mdash; users see a claim button for tokens they already received</li>
     </ol>
     <p class="note">These issues are <strong>not correlated</strong> with shared escrow addresses or dirty funding UTXOs &mdash; rates match the baseline population.</p>
     <div class="status-table">
       <table>
         <thead><tr><th>Status</th><th>Count</th><th>Notes</th></tr></thead>
-        <tbody><tr><td><code>skipped</code></td><td>295</td><td>all thaw #0, all have successful on-chain tx</td></tr>
-<tr><td><code>failed</code></td><td>53</td><td>all have tx_id, 53 tx_ids not found on-chain</td></tr>
+        <tbody><tr><td><code>skipped</code></td><td>314</td><td>all thaw #0, all have successful on-chain tx</td></tr>
+<tr><td><code>failed</code></td><td>56</td><td>all have tx_id, 56 tx_ids not found on-chain</td></tr>
 <tr><td><code>confirming</code></td><td>2</td><td>stuck in confirming state</td></tr></tbody>
       </table>
     </div>
@@ -105,35 +105,35 @@
 <div class="section">
   <h2>On-Chain Data</h2>
   <div class="cards">
-    <div class="card"><div class="value">52,991</div><div class="label">Treasury Transactions</div><div class="detail">2,837 non-redeem (setup/admin)</div></div>
-    <div class="card"><div class="value">50,154</div><div class="label">Redeem Transactions</div><div class="detail">all valid contracts</div></div>
-    <div class="card"><div class="value">50,154</div><div class="label">Eligible Addresses</div><div class="detail">1:1 with redeems (all unique)</div></div>
-    <div class="card"><div class="value">2,609,715,297.781794</div><div class="label">Total NIGHT Distributed</div><div class="detail">valid contracts only</div></div>
-    <div class="card"><div class="value">47,112</div><div class="label">Escrow Addresses</div><div class="detail">47,112 synced / 1,519 shared (4,561 addrs)</div></div>
-    <div class="card"><div class="value">1,334</div><div class="label">Dirty Funding UTXOs</div><div class="detail">2.7% of redeems had extra tokens</div></div>
+    <div class="card"><div class="value">53,435</div><div class="label">Treasury Transactions</div><div class="detail">2,846 non-redeem (setup/admin)</div></div>
+    <div class="card"><div class="value">50,589</div><div class="label">Redeem Transactions</div><div class="detail">all valid contracts</div></div>
+    <div class="card"><div class="value">50,589</div><div class="label">Eligible Addresses</div><div class="detail">1:1 with redeems (all unique)</div></div>
+    <div class="card"><div class="value">2,615,469,310.423997</div><div class="label">Total NIGHT Distributed</div><div class="detail">valid contracts only</div></div>
+    <div class="card"><div class="value">47,504</div><div class="label">Escrow Addresses</div><div class="detail">47,504 synced / 1,543 shared (4,628 addrs)</div></div>
+    <div class="card"><div class="value">1,345</div><div class="label">Dirty Funding UTXOs</div><div class="detail">2.7% of redeems had extra tokens</div></div>
   </div>
 </div>
 
 <div class="section">
   <h2>API Schedule Data</h2>
   <div class="cards">
-    <div class="card"><div class="value">50,154</div><div class="label">Schedules Fetched</div><div class="detail">0 remaining</div></div>
-    <div class="card"><div class="value">50,154</div><div class="label">Addresses with Thaws</div><div class="detail">0 returned not-eligible</div></div>
-    <div class="card"><div class="value">0</div><div class="label">Schedule Errors</div><div class="detail">excluding not-eligible</div></div>
+    <div class="card"><div class="value">50,589</div><div class="label">Schedules Fetched</div><div class="detail">0 remaining</div></div>
+    <div class="card"><div class="value">50,588</div><div class="label">Addresses with Thaws</div><div class="detail">0 returned not-eligible</div></div>
+    <div class="card"><div class="value">1</div><div class="label">Schedule Errors</div><div class="detail">excluding not-eligible</div></div>
   </div>
 </div>
 
 <div class="section">
   <h2>Discrepancies</h2>
   <div class="cards">
-    <div class="card"><div class="value warn">3,982</div><div class="label">Addresses with Issues</div></div>
-    <div class="card"><div class="value warn">4,226</div><div class="label">Total Discrepancies</div></div>
+    <div class="card"><div class="value warn">4,041</div><div class="label">Addresses with Issues</div></div>
+    <div class="card"><div class="value warn">4,286</div><div class="label">Total Discrepancies</div></div>
   </div>
   
       <details class="discrepancy-section">
         <summary class="section-header severity-high">
-          <h3>Suspicious Status <span class="count">350</span></h3>
-          <p class="section-desc">295 thaw #0 marked &quot;skipped&quot; despite successful on-chain tx. 53 marked &quot;failed&quot; (53 with tx_ids not found on-chain). 2 stuck in &quot;confirming&quot;.</p>
+          <h3>Suspicious Status <span class="count">372</span></h3>
+          <p class="section-desc">314 thaw #0 marked &quot;skipped&quot; despite successful on-chain tx. 56 marked &quot;failed&quot; (56 with tx_ids not found on-chain). 2 stuck in &quot;confirming&quot;.</p>
         </summary>
         <table>
           <thead><tr><th>Address</th><th>Detail</th><th>Transactions</th></tr></thead>
@@ -164,6 +164,11 @@
         </tr>
 <tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qyxfp9f9t5v9vg5l7hul42kqzkws3l29zjssmaqfxtmu0e07mm420n6pk76jfycu2gy0xkxjrlvsut5lkjcqcaq6qh4q7a9mnn/schedule" target="_blank" class="addr">addr1qyxfp9f9t5v9vg5l7hul42kqzkws3l29zjssmaqfxtmu0e07mm420n6pk76jfycu2gy0xkxjrlvsut5lkjcqcaq6qh4q7a9mnn</a></td>
+          <td>Thaw #0: status=&quot;skipped&quot;</td>
+          <td class="tx-col">&mdash;</td>
+        </tr>
+<tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q8y63khaqxeqsfwgjp3wset83xf8skq8tcn04tjp88z8ra4ssfpms5pq9kzlvhg76d5nr00xjpplcc4ev8qunujafqvqhkfdfk/schedule" target="_blank" class="addr">addr1q8y63khaqxeqsfwgjp3wset83xf8skq8tcn04tjp88z8ra4ssfpms5pq9kzlvhg76d5nr00xjpplcc4ev8qunujafqvqhkfdfk</a></td>
           <td>Thaw #0: status=&quot;skipped&quot;</td>
           <td class="tx-col">&mdash;</td>
         </tr>
@@ -323,6 +328,11 @@
           <td class="tx-col">&mdash;</td>
         </tr>
 <tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q99v58xv6lcghz0lgx44940qqdf6pdsur8wr43gwx5gj0j9tntuzgqfa33qr9ss83v3rqnuaq8gnq594edtaw2s3sgvqzdzdcv/schedule" target="_blank" class="addr">addr1q99v58xv6lcghz0lgx44940qqdf6pdsur8wr43gwx5gj0j9tntuzgqfa33qr9ss83v3rqnuaq8gnq594edtaw2s3sgvqzdzdcv</a></td>
+          <td>Thaw #0: status=&quot;skipped&quot;</td>
+          <td class="tx-col">&mdash;</td>
+        </tr>
+<tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qytnc5txgerm0q7ap9ss7qm2yhj3rfg74l50p65k5kwc38fzmp5u0u8dla94knzrgnapxa30xr325tpmv77p9fpsr3vqjm0ah0/schedule" target="_blank" class="addr">addr1qytnc5txgerm0q7ap9ss7qm2yhj3rfg74l50p65k5kwc38fzmp5u0u8dla94knzrgnapxa30xr325tpmv77p9fpsr3vqjm0ah0</a></td>
           <td>Thaw #0: status=&quot;skipped&quot;</td>
           <td class="tx-col">&mdash;</td>
@@ -339,6 +349,11 @@
         </tr>
 <tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q87m9p67jlk08at27yn59yxy7py4x79rsh6fx94nm0mzvmrcvp3wkjhxtdje95twylwt8vucus7c45jjf2jpfcrs3x2qhg9cmm/schedule" target="_blank" class="addr">addr1q87m9p67jlk08at27yn59yxy7py4x79rsh6fx94nm0mzvmrcvp3wkjhxtdje95twylwt8vucus7c45jjf2jpfcrs3x2qhg9cmm</a></td>
+          <td>Thaw #0: status=&quot;skipped&quot;</td>
+          <td class="tx-col">&mdash;</td>
+        </tr>
+<tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q9h25v0wcprrurwhes09yc655pz4uzh8mg3h7zfvgqt9759q9nc3furzrnz06jz4c5ycj5w7ygw3nq8frqzh4djf8a8s3pagsj/schedule" target="_blank" class="addr">addr1q9h25v0wcprrurwhes09yc655pz4uzh8mg3h7zfvgqt9759q9nc3furzrnz06jz4c5ycj5w7ygw3nq8frqzh4djf8a8s3pagsj</a></td>
           <td>Thaw #0: status=&quot;skipped&quot;</td>
           <td class="tx-col">&mdash;</td>
         </tr>
@@ -398,6 +413,16 @@
           <td class="tx-col"><a href="https://cexplorer.io/tx/5cd48cfa2b5aa5d75cde7899d661877d9085994be4e5a1f3f45e85cf2e3a1ce8" target="_blank" class="tx-link">5cd48cfa2b5aa5d7...</a></td>
         </tr>
 <tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qyw5ygcx7d0ahyvz4srq8g7eqm3938pfd5d9l9vlt7evn8y3dvekveexlpuupzp40lmquxrtdgje6vs67ss2gze76r7qeml95q/schedule" target="_blank" class="addr">addr1qyw5ygcx7d0ahyvz4srq8g7eqm3938pfd5d9l9vlt7evn8y3dvekveexlpuupzp40lmquxrtdgje6vs67ss2gze76r7qeml95q</a></td>
+          <td>Thaw #0: status=&quot;failed&quot;</td>
+          <td class="tx-col"><a href="https://cexplorer.io/tx/e3cd3fede8c66cb8f291c5a4ff11593a41c7bdaeb4a21f0936bdaa452e4ef951" target="_blank" class="tx-link">e3cd3fede8c66cb8...</a></td>
+        </tr>
+<tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q8gtd0spql5heedr5ukzd6ampem6qms0vhjufja52rqdceq2qakytcxz6m0kqz3gajqrcjzh39luw6q4l6n5x5gugjesx7v75w/schedule" target="_blank" class="addr">addr1q8gtd0spql5heedr5ukzd6ampem6qms0vhjufja52rqdceq2qakytcxz6m0kqz3gajqrcjzh39luw6q4l6n5x5gugjesx7v75w</a></td>
+          <td>Thaw #0: status=&quot;failed&quot;</td>
+          <td class="tx-col"><a href="https://cexplorer.io/tx/19afa5fcba0327a4f22473eb9a28d1ff724a7fc44b172b6ac22cecc53b2046f8" target="_blank" class="tx-link">19afa5fcba0327a4...</a></td>
+        </tr>
+<tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qypvh5hjn4893z3rx797agdd292jgc0v7hkfc7yjsj4v3xeyx5m9w83g3qgdayyvwqp7qj39qr7q7h5mu2lt6z6hrrrq7d5zps/schedule" target="_blank" class="addr">addr1qypvh5hjn4893z3rx797agdd292jgc0v7hkfc7yjsj4v3xeyx5m9w83g3qgdayyvwqp7qj39qr7q7h5mu2lt6z6hrrrq7d5zps</a></td>
           <td>Thaw #0: status=&quot;failed&quot;</td>
           <td class="tx-col"><a href="https://cexplorer.io/tx/1d65d3704451be4b7a258fb8939e037a5629308b08c5cdb44b8e017acb2918cc" target="_blank" class="tx-link">1d65d3704451be4b...</a></td>
@@ -431,6 +456,11 @@
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qxvqjk89nrgydsqr8hk2dvhxj9xqd8f5ar0t48esddquc4ju724sdudmwueyur4pwe3qezph3rcy3lmeue8xw9u5h3ys0eyfyh/schedule" target="_blank" class="addr">addr1qxvqjk89nrgydsqr8hk2dvhxj9xqd8f5ar0t48esddquc4ju724sdudmwueyur4pwe3qezph3rcy3lmeue8xw9u5h3ys0eyfyh</a></td>
           <td>Thaw #0: status=&quot;failed&quot;</td>
           <td class="tx-col"><a href="https://cexplorer.io/tx/0170599a410df0f84968d61e9c1d085d38419259004c2961ac4475ac6d3ea7d1" target="_blank" class="tx-link">0170599a410df0f8...</a></td>
+        </tr>
+<tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q9a8safx6kyqf4970f3wpz78v9l752xkys6gnr9dqjlyd7ryrxvs6h0h4tdzqcednl5expljfg8f3lp9zwm24y9uennsxljxzt/schedule" target="_blank" class="addr">addr1q9a8safx6kyqf4970f3wpz78v9l752xkys6gnr9dqjlyd7ryrxvs6h0h4tdzqcednl5expljfg8f3lp9zwm24y9uennsxljxzt</a></td>
+          <td>Thaw #0: status=&quot;skipped&quot;</td>
+          <td class="tx-col">&mdash;</td>
         </tr>
 <tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qx82y8ck9clngjkathpct7lwn4hrml7q7q0p5q4zd93tdaarg6zalhjgyw2tl7hdstfvuscq3uynt4m9umavrdgl42ysxffy7j/schedule" target="_blank" class="addr">addr1qx82y8ck9clngjkathpct7lwn4hrml7q7q0p5q4zd93tdaarg6zalhjgyw2tl7hdstfvuscq3uynt4m9umavrdgl42ysxffy7j</a></td>
@@ -593,6 +623,11 @@
           <td class="tx-col"><a href="https://cexplorer.io/tx/44c959862f5cb630220d0ceec32a94b9343d516a147df7388fdb1bcd4006b281" target="_blank" class="tx-link">44c959862f5cb630...</a></td>
         </tr>
 <tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q8mwr6gh9ttlpgu6vafwsqhtatzfxd474as2zaxrnw5ha304jmg5f8n82trga0zm0m8x93yu7c760tjpfayfawrzsavscpuqmc/schedule" target="_blank" class="addr">addr1q8mwr6gh9ttlpgu6vafwsqhtatzfxd474as2zaxrnw5ha304jmg5f8n82trga0zm0m8x93yu7c760tjpfayfawrzsavscpuqmc</a></td>
+          <td>Thaw #0: status=&quot;skipped&quot;</td>
+          <td class="tx-col">&mdash;</td>
+        </tr>
+<tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q8s25afzzw02k4hcctcutmrrlpzuy7cdcwyt5qhfde7d0r4fvmj9x2mct07hk4y7qy696gk4w5dn3jegegt4kdtsl5gswqaluq/schedule" target="_blank" class="addr">addr1q8s25afzzw02k4hcctcutmrrlpzuy7cdcwyt5qhfde7d0r4fvmj9x2mct07hk4y7qy696gk4w5dn3jegegt4kdtsl5gswqaluq</a></td>
           <td>Thaw #0: status=&quot;skipped&quot;</td>
           <td class="tx-col">&mdash;</td>
@@ -736,6 +771,11 @@
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q85r4tfwza8p5ne9hlz86ry8jfr29lgl5lu72ew40lavt6zufkcnxlf87ddv9p6n44uz4a9vjxsxcsm8g909qcsk2paqmtdl5k/schedule" target="_blank" class="addr">addr1q85r4tfwza8p5ne9hlz86ry8jfr29lgl5lu72ew40lavt6zufkcnxlf87ddv9p6n44uz4a9vjxsxcsm8g909qcsk2paqmtdl5k</a></td>
           <td>Thaw #0: status=&quot;failed&quot;</td>
           <td class="tx-col"><a href="https://cexplorer.io/tx/da36556bed9fe4f01690180bbdc13158d22b40e65f4025cae7a3b0ab7d069af1" target="_blank" class="tx-link">da36556bed9fe4f0...</a></td>
+        </tr>
+<tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q85s75was9f9wdr8r0gp6xe2gksj2jkdxzanhd6wunp52mgrg2gp8e7emtlcfaaqlelwlck30hx737xxsy54nl9jkyqqerqpda/schedule" target="_blank" class="addr">addr1q85s75was9f9wdr8r0gp6xe2gksj2jkdxzanhd6wunp52mgrg2gp8e7emtlcfaaqlelwlck30hx737xxsy54nl9jkyqqerqpda</a></td>
+          <td>Thaw #0: status=&quot;skipped&quot;</td>
+          <td class="tx-col">&mdash;</td>
         </tr>
 <tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qx8gj3y8nghf343et2geug6dvd3auk7pu6htupuej8678jt9dwn87utg6kzp6gu7cmj9ergwxlt6v5gdd3d0g62x7lzqfy5da4/schedule" target="_blank" class="addr">addr1qx8gj3y8nghf343et2geug6dvd3auk7pu6htupuej8678jt9dwn87utg6kzp6gu7cmj9ergwxlt6v5gdd3d0g62x7lzqfy5da4</a></td>
@@ -1063,6 +1103,11 @@
           <td class="tx-col">&mdash;</td>
         </tr>
 <tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q8es2r3lu5wu6dpcs2a3p56lgzq4dd0wzkm222zfg3a7jexnze93lkf6yx6yaze29utyrwpmek24xpfyy850rkdjy5esujh9m3/schedule" target="_blank" class="addr">addr1q8es2r3lu5wu6dpcs2a3p56lgzq4dd0wzkm222zfg3a7jexnze93lkf6yx6yaze29utyrwpmek24xpfyy850rkdjy5esujh9m3</a></td>
+          <td>Thaw #0: status=&quot;skipped&quot;</td>
+          <td class="tx-col">&mdash;</td>
+        </tr>
+<tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qycgum23af7ch4hm9ryddmtmujgy9xp72a9h44j33pygp0cdhftas2zcdcsxwjffvhkckwnr64zuyrha9y29wsu6wmfqshqsjd/schedule" target="_blank" class="addr">addr1qycgum23af7ch4hm9ryddmtmujgy9xp72a9h44j33pygp0cdhftas2zcdcsxwjffvhkckwnr64zuyrha9y29wsu6wmfqshqsjd</a></td>
           <td>Thaw #0: status=&quot;skipped&quot;</td>
           <td class="tx-col">&mdash;</td>
@@ -1133,6 +1178,11 @@
           <td class="tx-col">&mdash;</td>
         </tr>
 <tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qx4rp2hlwzyh9aukd4sarpzcv33ks9t2vent2dt5f7d97xsur85f0yl23xl709gtxwxzsvhkp6l3phzqr5jl7k8x2ruqw55nf2/schedule" target="_blank" class="addr">addr1qx4rp2hlwzyh9aukd4sarpzcv33ks9t2vent2dt5f7d97xsur85f0yl23xl709gtxwxzsvhkp6l3phzqr5jl7k8x2ruqw55nf2</a></td>
+          <td>Thaw #0: status=&quot;skipped&quot;</td>
+          <td class="tx-col">&mdash;</td>
+        </tr>
+<tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qx0zpf8svesk6taq75fp48xmfcrqm46m72alxwyha6wctt3994uwpqms49qfach2v5tapy2kx5n0uz8thxv4utu7rm8sn83cqt/schedule" target="_blank" class="addr">addr1qx0zpf8svesk6taq75fp48xmfcrqm46m72alxwyha6wctt3994uwpqms49qfach2v5tapy2kx5n0uz8thxv4utu7rm8sn83cqt</a></td>
           <td>Thaw #0: status=&quot;skipped&quot;</td>
           <td class="tx-col">&mdash;</td>
@@ -1193,6 +1243,11 @@
           <td class="tx-col">&mdash;</td>
         </tr>
 <tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qx2tz77f0jfw2u4z5hfm73yptam3d223ynf37thrm4le3dll8p3mf8kph0t7fggfle8jf6j3pmcqx9nqmvyz8u7tpwxsn8c467/schedule" target="_blank" class="addr">addr1qx2tz77f0jfw2u4z5hfm73yptam3d223ynf37thrm4le3dll8p3mf8kph0t7fggfle8jf6j3pmcqx9nqmvyz8u7tpwxsn8c467</a></td>
+          <td>Thaw #0: status=&quot;skipped&quot;</td>
+          <td class="tx-col">&mdash;</td>
+        </tr>
+<tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qy5n464zysepcvg88mqwtp8jls7ywsmeevk8rumclgv5lc5smaqr5jslj9xwzfnu66qv8neu6acyskfdnww9dgk8k99shjpumw/schedule" target="_blank" class="addr">addr1qy5n464zysepcvg88mqwtp8jls7ywsmeevk8rumclgv5lc5smaqr5jslj9xwzfnu66qv8neu6acyskfdnww9dgk8k99shjpumw</a></td>
           <td>Thaw #0: status=&quot;skipped&quot;</td>
           <td class="tx-col">&mdash;</td>
@@ -1244,6 +1299,11 @@
         </tr>
 <tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qyrzqvk8gatgr7x5n283mdz7f3dcgej8f3h7dlz7mcfzrselefqn2qrkt0rh7kqy3qqdzp7qnlypgzc4a4yphx9jlukql6yzla/schedule" target="_blank" class="addr">addr1qyrzqvk8gatgr7x5n283mdz7f3dcgej8f3h7dlz7mcfzrselefqn2qrkt0rh7kqy3qqdzp7qnlypgzc4a4yphx9jlukql6yzla</a></td>
+          <td>Thaw #0: status=&quot;skipped&quot;</td>
+          <td class="tx-col">&mdash;</td>
+        </tr>
+<tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qxml93gm9ce4725pt8edn5lalsktknlmnvmde7lq2d068htz4zpsn7m243r3p5umk28km095c2968dfsplgj2r3jucps72u8wy/schedule" target="_blank" class="addr">addr1qxml93gm9ce4725pt8edn5lalsktknlmnvmde7lq2d068htz4zpsn7m243r3p5umk28km095c2968dfsplgj2r3jucps72u8wy</a></td>
           <td>Thaw #0: status=&quot;skipped&quot;</td>
           <td class="tx-col">&mdash;</td>
         </tr>
@@ -1363,6 +1423,11 @@
           <td class="tx-col"><a href="https://cexplorer.io/tx/2142f538a728f8466cea3cd86547ee028d33045151f5579aa24c1782d67ba7b4" target="_blank" class="tx-link">2142f538a728f846...</a></td>
         </tr>
 <tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qy4acl39qk8nhek3qfdrjztuydz0g579t7jm9t24gzzxn7pmgqwcyw994l0c3qqwkmc0t3rueftretge5vvuyphtegxsjnf2rj/schedule" target="_blank" class="addr">addr1qy4acl39qk8nhek3qfdrjztuydz0g579t7jm9t24gzzxn7pmgqwcyw994l0c3qqwkmc0t3rueftretge5vvuyphtegxsjnf2rj</a></td>
+          <td>Thaw #0: status=&quot;skipped&quot;</td>
+          <td class="tx-col">&mdash;</td>
+        </tr>
+<tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qylzv5slrj8wfc0550zkaphpyw9kd8mjt7fe75hg2tl7hje7yefp78ywunslfg79d6rwzgutv60hyhunnafws5hla09sachjlj/schedule" target="_blank" class="addr">addr1qylzv5slrj8wfc0550zkaphpyw9kd8mjt7fe75hg2tl7hje7yefp78ywunslfg79d6rwzgutv60hyhunnafws5hla09sachjlj</a></td>
           <td>Thaw #0: status=&quot;skipped&quot;</td>
           <td class="tx-col">&mdash;</td>
@@ -1381,6 +1446,11 @@
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qynl7aukz7frzkgvsc26eh225fgxju4ffeswh0qq6ekqnlvevzxln8jld6lvx4kj3ly063wzy33senff9jyaazx5memsayfv4g/schedule" target="_blank" class="addr">addr1qynl7aukz7frzkgvsc26eh225fgxju4ffeswh0qq6ekqnlvevzxln8jld6lvx4kj3ly063wzy33senff9jyaazx5memsayfv4g</a></td>
           <td>Thaw #0: status=&quot;skipped&quot;</td>
           <td class="tx-col">&mdash;</td>
+        </tr>
+<tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q9za8mdrc5xrptx4z6aqh9ts3ldkyakmcuezu760cqq2zz5qwvuxzw8zrungt9my2mf0gv5arruc3y60mww0p54vdqpqp77qh5/schedule" target="_blank" class="addr">addr1q9za8mdrc5xrptx4z6aqh9ts3ldkyakmcuezu760cqq2zz5qwvuxzw8zrungt9my2mf0gv5arruc3y60mww0p54vdqpqp77qh5</a></td>
+          <td>Thaw #0: status=&quot;failed&quot;</td>
+          <td class="tx-col"><a href="https://cexplorer.io/tx/79469e85e2b55a4c5cec83a4b1c79d69318acccb09f9c1d9af3c03f6fc56c740" target="_blank" class="tx-link">79469e85e2b55a4c...</a></td>
         </tr>
 <tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qy24sjqaehrpar6t8nu4lweq83dyw00cufuepam9n5m6etsvmavsmd8mc9epqmunlz6dz06ery8pf8nu2se4jdhkjpjs24whre/schedule" target="_blank" class="addr">addr1qy24sjqaehrpar6t8nu4lweq83dyw00cufuepam9n5m6etsvmavsmd8mc9epqmunlz6dz06ery8pf8nu2se4jdhkjpjs24whre</a></td>
@@ -1428,6 +1498,11 @@
           <td class="tx-col">&mdash;</td>
         </tr>
 <tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q8hwlqt567pd0xfz3c29ztdz6fqxjyq5lsgfrsxgtjxngmcfkhcz0hq3rvq8tadrt36angcv2c2y4c99k9z778cmf6rqffct8g/schedule" target="_blank" class="addr">addr1q8hwlqt567pd0xfz3c29ztdz6fqxjyq5lsgfrsxgtjxngmcfkhcz0hq3rvq8tadrt36angcv2c2y4c99k9z778cmf6rqffct8g</a></td>
+          <td>Thaw #0: status=&quot;skipped&quot;</td>
+          <td class="tx-col">&mdash;</td>
+        </tr>
+<tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q92hdtr9z045ng9hkdvt98ce398ak4xr2n4y5k9k2p4rc49stzkm0ma53hryp397uskzxkqxl9m8laudmqncu7sq52hspn4uzn/schedule" target="_blank" class="addr">addr1q92hdtr9z045ng9hkdvt98ce398ak4xr2n4y5k9k2p4rc49stzkm0ma53hryp397uskzxkqxl9m8laudmqncu7sq52hspn4uzn</a></td>
           <td>Thaw #0: status=&quot;skipped&quot;</td>
           <td class="tx-col">&mdash;</td>
@@ -1439,6 +1514,11 @@
         </tr>
 <tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qyf3vg0t4mgch6rarn0493qdzumvpwgrhs0s49fdm6zrz5tjtmfreat8zfcssgkn7aytrlt9r0d0a8mshkjpgxlazxkqllkhh4/schedule" target="_blank" class="addr">addr1qyf3vg0t4mgch6rarn0493qdzumvpwgrhs0s49fdm6zrz5tjtmfreat8zfcssgkn7aytrlt9r0d0a8mshkjpgxlazxkqllkhh4</a></td>
+          <td>Thaw #0: status=&quot;skipped&quot;</td>
+          <td class="tx-col">&mdash;</td>
+        </tr>
+<tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qyj5uhlawln9p0nfdjk8azd7dvruux8ha4y2t73avw7flgvuh62vrdradzfafzvkqflllvhmrdcah9w4vlnrhmlhr7ms6vydh8/schedule" target="_blank" class="addr">addr1qyj5uhlawln9p0nfdjk8azd7dvruux8ha4y2t73avw7flgvuh62vrdradzfafzvkqflllvhmrdcah9w4vlnrhmlhr7ms6vydh8</a></td>
           <td>Thaw #0: status=&quot;skipped&quot;</td>
           <td class="tx-col">&mdash;</td>
         </tr>
@@ -1523,6 +1603,11 @@
           <td class="tx-col"><a href="https://cexplorer.io/tx/c5aa85d6508986fac68ce331be4569411df28562085800f0f6ce14100d52b490" target="_blank" class="tx-link">c5aa85d6508986fa...</a></td>
         </tr>
 <tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q9slsra0up4spk4yfh0wlak50grff4a2u4w0v83w4d2qnz6h0caj2unt3aqml0fd3jlw3gey8c8yx43w2hj7gy3a7zxqs2lgs3/schedule" target="_blank" class="addr">addr1q9slsra0up4spk4yfh0wlak50grff4a2u4w0v83w4d2qnz6h0caj2unt3aqml0fd3jlw3gey8c8yx43w2hj7gy3a7zxqs2lgs3</a></td>
+          <td>Thaw #0: status=&quot;skipped&quot;</td>
+          <td class="tx-col">&mdash;</td>
+        </tr>
+<tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qyr38tvpu9cx4vazny9y9rksa7t0hglv4d9v9fp2q7ssv9vrvagesvreluz62ak7gr4330k9hw6grtde9gw5pe9r5y3sjaskrf/schedule" target="_blank" class="addr">addr1qyr38tvpu9cx4vazny9y9rksa7t0hglv4d9v9fp2q7ssv9vrvagesvreluz62ak7gr4330k9hw6grtde9gw5pe9r5y3sjaskrf</a></td>
           <td>Thaw #0: status=&quot;skipped&quot;</td>
           <td class="tx-col">&mdash;</td>
@@ -1598,6 +1683,11 @@
           <td class="tx-col">&mdash;</td>
         </tr>
 <tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qy3ts34cevdey0vzym3e06jyp5gw9lsjg0th7ku2alu07hqu9s8tn7p5mlrzpstawjg88pg2cusrrhx58etjyqxhxk0qj3fhns/schedule" target="_blank" class="addr">addr1qy3ts34cevdey0vzym3e06jyp5gw9lsjg0th7ku2alu07hqu9s8tn7p5mlrzpstawjg88pg2cusrrhx58etjyqxhxk0qj3fhns</a></td>
+          <td>Thaw #0: status=&quot;skipped&quot;</td>
+          <td class="tx-col">&mdash;</td>
+        </tr>
+<tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qy4qgntjhehhmve2wad7gpy83y4mq9s73h89r4qfeaw0p3z9vxtyltv4ldc5dd2alf5ddfnwnzsc7m3mtact7ujnykvsx9lk2u/schedule" target="_blank" class="addr">addr1qy4qgntjhehhmve2wad7gpy83y4mq9s73h89r4qfeaw0p3z9vxtyltv4ldc5dd2alf5ddfnwnzsc7m3mtact7ujnykvsx9lk2u</a></td>
           <td>Thaw #0: status=&quot;skipped&quot;</td>
           <td class="tx-col">&mdash;</td>
@@ -1668,6 +1758,11 @@
           <td class="tx-col"><a href="https://cexplorer.io/tx/5d02e203200ece3ab8a5d1ae21ac1dabe8447bdf24846c67e47c765c0f3758fb" target="_blank" class="tx-link">5d02e203200ece3a...</a></td>
         </tr>
 <tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q9m4eavdvlts0gnvky5m65pa6dc2phcsyu26lezz9jgx7fr0n2alhuk0p0d7xj4w3f0q9srj7pg6c3e8yq7d08gdn0aqwt4ja2/schedule" target="_blank" class="addr">addr1q9m4eavdvlts0gnvky5m65pa6dc2phcsyu26lezz9jgx7fr0n2alhuk0p0d7xj4w3f0q9srj7pg6c3e8yq7d08gdn0aqwt4ja2</a></td>
+          <td>Thaw #0: status=&quot;skipped&quot;</td>
+          <td class="tx-col">&mdash;</td>
+        </tr>
+<tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qy3q24xwrhx5945t3py229m3fm3gzmzzaxf2dy67dpd05xn9vf0np5cnwft7scfjjn07a09akf9e69zm8d6qeng9p3vs0n2pyd/schedule" target="_blank" class="addr">addr1qy3q24xwrhx5945t3py229m3fm3gzmzzaxf2dy67dpd05xn9vf0np5cnwft7scfjjn07a09akf9e69zm8d6qeng9p3vs0n2pyd</a></td>
           <td>Thaw #0: status=&quot;skipped&quot;</td>
           <td class="tx-col">&mdash;</td>
@@ -1723,7 +1818,17 @@
           <td class="tx-col">&mdash;</td>
         </tr>
 <tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q9t7jr0czsz9rtm3ctqlf3pnlfz9pkdq0jspcmtrs26mzmt7wp9spgqpkhz02uaz5ardgj5vtj8l7pluc5gtv396zn6q4kwnzn/schedule" target="_blank" class="addr">addr1q9t7jr0czsz9rtm3ctqlf3pnlfz9pkdq0jspcmtrs26mzmt7wp9spgqpkhz02uaz5ardgj5vtj8l7pluc5gtv396zn6q4kwnzn</a></td>
+          <td>Thaw #0: status=&quot;skipped&quot;</td>
+          <td class="tx-col">&mdash;</td>
+        </tr>
+<tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qxugp97339tvc8kk9h2lx5v0appwqaw2gfjegj38dlpnvxktxk7yca79c0rncu70vmcs2e5pc3mpnxa48n50hyfar0ps6s9zm4/schedule" target="_blank" class="addr">addr1qxugp97339tvc8kk9h2lx5v0appwqaw2gfjegj38dlpnvxktxk7yca79c0rncu70vmcs2e5pc3mpnxa48n50hyfar0ps6s9zm4</a></td>
+          <td>Thaw #0: status=&quot;skipped&quot;</td>
+          <td class="tx-col">&mdash;</td>
+        </tr>
+<tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q8l3twlff0e5jjl5m8udf5l0jjyth70mte9wrertt7mhwa94wuv928fz730h0uwzc30lfx8s8axp3rf9yycqdpx6vgus45vr5n/schedule" target="_blank" class="addr">addr1q8l3twlff0e5jjl5m8udf5l0jjyth70mte9wrertt7mhwa94wuv928fz730h0uwzc30lfx8s8axp3rf9yycqdpx6vgus45vr5n</a></td>
           <td>Thaw #0: status=&quot;skipped&quot;</td>
           <td class="tx-col">&mdash;</td>
         </tr>
@@ -1814,6 +1919,11 @@
         </tr>
 <tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q8gvse87wjxpzkt8sqpw9rq42ldyennud036qxdeqslln7ggttp38ntm50v54hgrwl48z5cyyekj30fnguay49rj75zsc6eull/schedule" target="_blank" class="addr">addr1q8gvse87wjxpzkt8sqpw9rq42ldyennud036qxdeqslln7ggttp38ntm50v54hgrwl48z5cyyekj30fnguay49rj75zsc6eull</a></td>
+          <td>Thaw #0: status=&quot;skipped&quot;</td>
+          <td class="tx-col">&mdash;</td>
+        </tr>
+<tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q98q96egjhwr0nqm7rsur28j8ypgqav945ny38es7v48gaewpqegxnc6fwcaszxfg6ynaxtmwua27s4dn69ppzlfu9vsccqw9y/schedule" target="_blank" class="addr">addr1q98q96egjhwr0nqm7rsur28j8ypgqav945ny38es7v48gaewpqegxnc6fwcaszxfg6ynaxtmwua27s4dn69ppzlfu9vsccqw9y</a></td>
           <td>Thaw #0: status=&quot;skipped&quot;</td>
           <td class="tx-col">&mdash;</td>
         </tr>
@@ -3072,7 +3182,7 @@
 
       <details class="discrepancy-section">
         <summary class="section-header severity-medium">
-          <h3>Redeemable but Already On-Chain <span class="count">3642</span></h3>
+          <h3>Redeemable but Already On-Chain <span class="count">3680</span></h3>
           <p class="section-desc">API shows thaw as &quot;redeemable&quot; with no tx_id, but NIGHT was already delivered on-chain. Users see a claim button for tokens they already received.</p>
         </summary>
         <table>
@@ -5243,6 +5353,11 @@
           <td class="tx-col"><a href="https://cexplorer.io/tx/001b6f4a308eaa2708d7ad55c70dc499cec97519953146a04312682d41a6d3d3" target="_blank" class="tx-link">001b6f4a308eaa27...</a></td>
         </tr>
 <tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q99v58xv6lcghz0lgx44940qqdf6pdsur8wr43gwx5gj0j9tntuzgqfa33qr9ss83v3rqnuaq8gnq594edtaw2s3sgvqzdzdcv/schedule" target="_blank" class="addr">addr1q99v58xv6lcghz0lgx44940qqdf6pdsur8wr43gwx5gj0j9tntuzgqfa33qr9ss83v3rqnuaq8gnq594edtaw2s3sgvqzdzdcv</a></td>
+          <td>Thaw #1: redeemable, no tx_id, but 17,851.578914 NIGHT delivered 1x on-chain vs 0 confirmed</td>
+          <td class="tx-col"><a href="https://cexplorer.io/tx/9fe3c824eec4aa67a3ddca17050aeb662c5e2644ddf8edbb0ea9c21a6773faad" target="_blank" class="tx-link">9fe3c824eec4aa67...</a></td>
+        </tr>
+<tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q9lelgs92e3asle6w0wm0jkn7trrkp077vs4qesv67u0wwakqu2s9g9vvjg2r308s8pmgc34ykttnzrkmf6umk7gwv0qjcglw8/schedule" target="_blank" class="addr">addr1q9lelgs92e3asle6w0wm0jkn7trrkp077vs4qesv67u0wwakqu2s9g9vvjg2r308s8pmgc34ykttnzrkmf6umk7gwv0qjcglw8</a></td>
           <td>Thaw #0: redeemable, no tx_id, but 17,838.830602 NIGHT delivered 1x on-chain vs 0 confirmed</td>
           <td class="tx-col"><a href="https://cexplorer.io/tx/039d2f157c8c759f0593c87907ea85c4045db3192742eb4cb26e185c981706ad" target="_blank" class="tx-link">039d2f157c8c759f...</a></td>
@@ -5988,6 +6103,11 @@
           <td class="tx-col"><a href="https://cexplorer.io/tx/f84cf428d5967435300fe183455d7bad4cfb5e6f9ac36100261040bf43a618bf" target="_blank" class="tx-link">f84cf428d5967435...</a></td>
         </tr>
 <tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qxn37c4ylw8920stw5jssmlj00zj0hfupqr8hfw5fc5s95x8uhfcc9dv96n9cx3ttfd4qenyz74hyrxzk7e5rd30e3vq8yttjh/schedule" target="_blank" class="addr">addr1qxn37c4ylw8920stw5jssmlj00zj0hfupqr8hfw5fc5s95x8uhfcc9dv96n9cx3ttfd4qenyz74hyrxzk7e5rd30e3vq8yttjh</a></td>
+          <td>Thaw #0: redeemable, no tx_id, but 10,995.041656 NIGHT delivered 1x on-chain vs 0 confirmed</td>
+          <td class="tx-col"><a href="https://cexplorer.io/tx/f30ab2dd48d268e4ca6c4f0f4dbad53f1038727f5dbb69968a429237c68f04c5" target="_blank" class="tx-link">f30ab2dd48d268e4...</a></td>
+        </tr>
+<tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q97suyad27rc0esrr2cmqq4tpalwp36e9ryk7j0nq4vw7ts8n0gmuthh04wr2htjywe82yce3wzjdw5uvnes7luhjqdq3aa5ap/schedule" target="_blank" class="addr">addr1q97suyad27rc0esrr2cmqq4tpalwp36e9ryk7j0nq4vw7ts8n0gmuthh04wr2htjywe82yce3wzjdw5uvnes7luhjqdq3aa5ap</a></td>
           <td>Thaw #0: redeemable, no tx_id, but 10,977.158705 NIGHT delivered 1x on-chain vs 0 confirmed</td>
           <td class="tx-col"><a href="https://cexplorer.io/tx/1dda19e378d9af55806bb72cfa782653a22941c82b5676a5dc4d60c7a50ff591" target="_blank" class="tx-link">1dda19e378d9af55...</a></td>
@@ -6036,6 +6156,11 @@
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q8ahvrxjx89sqj5kp29yuk8qj02ags0x0ehh5xalp4y27cevne3kkhuv4uew6w0l2yrvxt8984nsstwuwf4r2xyvgvqsdpg7pt/schedule" target="_blank" class="addr">addr1q8ahvrxjx89sqj5kp29yuk8qj02ags0x0ehh5xalp4y27cevne3kkhuv4uew6w0l2yrvxt8984nsstwuwf4r2xyvgvqsdpg7pt</a></td>
           <td>Thaw #0: redeemable, no tx_id, but 10,664.529110 NIGHT delivered 1x on-chain vs 0 confirmed</td>
           <td class="tx-col"><a href="https://cexplorer.io/tx/328ad12bf96e81bbb6c8d36eca639e87a89b452ffacd11e81ab49f065984b5f0" target="_blank" class="tx-link">328ad12bf96e81bb...</a></td>
+        </tr>
+<tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qx7j9lgyjkxsyqfxm0kgacajs9l5er7sr752ma74jd5x7djnzm8pu960tz65q5wr9vfmznhypeg7phwhhayycja2sxas8sk2qs/schedule" target="_blank" class="addr">addr1qx7j9lgyjkxsyqfxm0kgacajs9l5er7sr752ma74jd5x7djnzm8pu960tz65q5wr9vfmznhypeg7phwhhayycja2sxas8sk2qs</a></td>
+          <td>Thaw #0: redeemable, no tx_id, but 10,636.975976 NIGHT delivered 1x on-chain vs 0 confirmed</td>
+          <td class="tx-col"><a href="https://cexplorer.io/tx/6629f4a6b58f42c7712d1676984298ce4dab578e392926f8234a3682feb4d3de" target="_blank" class="tx-link">6629f4a6b58f42c7...</a></td>
         </tr>
 <tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q9cl8mgqhcnultv8vnfy63xnnssx9tgyrt53vyk4wrefafzsk87selxep783flt9wh3jyw30yyc084ll3uvxx6m82xuqjuj8rz/schedule" target="_blank" class="addr">addr1q9cl8mgqhcnultv8vnfy63xnnssx9tgyrt53vyk4wrefafzsk87selxep783flt9wh3jyw30yyc084ll3uvxx6m82xuqjuj8rz</a></td>
@@ -6296,6 +6421,11 @@
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q8jv4cu5haew6v5ep6j5dwdnluvtn328erp8xj3qkjpatpgxx3xr6xv06x40wu3s0j5ve23uy56kh93ma32n3f24gz2ss0lz0x/schedule" target="_blank" class="addr">addr1q8jv4cu5haew6v5ep6j5dwdnluvtn328erp8xj3qkjpatpgxx3xr6xv06x40wu3s0j5ve23uy56kh93ma32n3f24gz2ss0lz0x</a></td>
           <td>Thaw #0: redeemable, no tx_id, but 9,380.978244 NIGHT delivered 1x on-chain vs 0 confirmed</td>
           <td class="tx-col"><a href="https://cexplorer.io/tx/fd1c32e3807de467e2baeb4387d4c1731df3241c6aa71b30376e35bbf472b1f2" target="_blank" class="tx-link">fd1c32e3807de467...</a></td>
+        </tr>
+<tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qyp7sta0cttv3ze52swp6gc6g6z23eylhvt9k8vcxnjdlzypn36xx84nwxpx6c2ykutfla07ymj9090mu3zhcrp0g73swgq0z2/schedule" target="_blank" class="addr">addr1qyp7sta0cttv3ze52swp6gc6g6z23eylhvt9k8vcxnjdlzypn36xx84nwxpx6c2ykutfla07ymj9090mu3zhcrp0g73swgq0z2</a></td>
+          <td>Thaw #0: redeemable, no tx_id, but 9,371.277864 NIGHT delivered 1x on-chain vs 0 confirmed</td>
+          <td class="tx-col"><a href="https://cexplorer.io/tx/ebf85a84710b780704087ef579dab70dadaa56a644dcfe5f4aa660a22ceba240" target="_blank" class="tx-link">ebf85a84710b7807...</a></td>
         </tr>
 <tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qy0nszvxzqnjfpap3ghsw2dd30kyx58vwm0r6026g7fycfrpju056lkyjmj5wtgsps5g2e0nmclm42gakehqc2x5vzhsty2x0z/schedule" target="_blank" class="addr">addr1qy0nszvxzqnjfpap3ghsw2dd30kyx58vwm0r6026g7fycfrpju056lkyjmj5wtgsps5g2e0nmclm42gakehqc2x5vzhsty2x0z</a></td>
@@ -7038,6 +7168,11 @@
           <td class="tx-col"><a href="https://cexplorer.io/tx/1f8fb8f2fed26ef55db60f8dd78877f424695c717801823c807ff76d03608461" target="_blank" class="tx-link">1f8fb8f2fed26ef5...</a></td>
         </tr>
 <tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qyazpm8ghrxcxn0a0ffqmkasdewrged299rfclnsw8j7nfwqmzjrpq64yf8nlcwj2lvknryvfn0k7c2pv9g3dwahv34qkg5kpc/schedule" target="_blank" class="addr">addr1qyazpm8ghrxcxn0a0ffqmkasdewrged299rfclnsw8j7nfwqmzjrpq64yf8nlcwj2lvknryvfn0k7c2pv9g3dwahv34qkg5kpc</a></td>
+          <td>Thaw #0: redeemable, no tx_id, but 7,294.195063 NIGHT delivered 1x on-chain vs 0 confirmed</td>
+          <td class="tx-col"><a href="https://cexplorer.io/tx/4346e7b0582158ddaa0c0797172cecfc2e3ac2f4403881b90ef1dcd73016f3f5" target="_blank" class="tx-link">4346e7b0582158dd...</a></td>
+        </tr>
+<tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qxjkt8xwfpnhhfngxyqccnehxnynv2u6xntuul7qfyn69pdqy0mltehtzs3g5hsmwyu89wdx28jqrcrwknymneuhu4tq3r3lwg/schedule" target="_blank" class="addr">addr1qxjkt8xwfpnhhfngxyqccnehxnynv2u6xntuul7qfyn69pdqy0mltehtzs3g5hsmwyu89wdx28jqrcrwknymneuhu4tq3r3lwg</a></td>
           <td>Thaw #0: redeemable, no tx_id, but 7,282.152977 NIGHT delivered 1x on-chain vs 0 confirmed</td>
           <td class="tx-col"><a href="https://cexplorer.io/tx/d0883465b622fe30696bf61888c67e42ded5cd567411b86d19c803adc2d1cc14" target="_blank" class="tx-link">d0883465b622fe30...</a></td>
@@ -7378,6 +7513,11 @@
           <td class="tx-col"><a href="https://cexplorer.io/tx/286a9d1672c7fa503b81c00dc4e2a3a80a3b8b292399be1c33e3fa43466b01c9" target="_blank" class="tx-link">286a9d1672c7fa50...</a></td>
         </tr>
 <tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qxgprwwz4rfxamsveq9n87r0rstjesvycz0pg4q9flf35zuxlyw8zklx0gzs3ndnpqr7vppja858clsz8pq00z5ddqdsnylmrc/schedule" target="_blank" class="addr">addr1qxgprwwz4rfxamsveq9n87r0rstjesvycz0pg4q9flf35zuxlyw8zklx0gzs3ndnpqr7vppja858clsz8pq00z5ddqdsnylmrc</a></td>
+          <td>Thaw #0: redeemable, no tx_id, but 6,061.486179 NIGHT delivered 1x on-chain vs 0 confirmed</td>
+          <td class="tx-col"><a href="https://cexplorer.io/tx/0758b06a877631a353f1d2783ca516ec905a7a2541ba2b987afefb41f873367a" target="_blank" class="tx-link">0758b06a877631a3...</a></td>
+        </tr>
+<tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qxs7umqdwp9x8nrqwupplkm077zfzlua0t2vvs930lq3vv2lsdrxwkcm7nhjx6nmqqy5m9cxlq6xwzvcrgmve3tcadhqyday8q/schedule" target="_blank" class="addr">addr1qxs7umqdwp9x8nrqwupplkm077zfzlua0t2vvs930lq3vv2lsdrxwkcm7nhjx6nmqqy5m9cxlq6xwzvcrgmve3tcadhqyday8q</a></td>
           <td>Thaw #0: redeemable, no tx_id, but 6,056.443746 NIGHT delivered 1x on-chain vs 0 confirmed</td>
           <td class="tx-col"><a href="https://cexplorer.io/tx/5f20643ec08912b7bbf722d9769b7369f15bfbe7f27e1d380f90a3a4711ea465" target="_blank" class="tx-link">5f20643ec08912b7...</a></td>
@@ -7538,6 +7678,11 @@
           <td class="tx-col"><a href="https://cexplorer.io/tx/f9a2a8179d8a8bc57c5a4e7a8e846e639b5fbf54bb0031949202b5685524574e" target="_blank" class="tx-link">f9a2a8179d8a8bc5...</a></td>
         </tr>
 <tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qx6vsgkgvw40gd82uc52szgxlazqwujfz6xsu45kgmz8rd288dah3xf5vg8gldv994hdvkk4f7rlvp6gymm86rqcwn6su3ezr6/schedule" target="_blank" class="addr">addr1qx6vsgkgvw40gd82uc52szgxlazqwujfz6xsu45kgmz8rd288dah3xf5vg8gldv994hdvkk4f7rlvp6gymm86rqcwn6su3ezr6</a></td>
+          <td>Thaw #0: redeemable, no tx_id, but 5,694.325836 NIGHT delivered 1x on-chain vs 0 confirmed</td>
+          <td class="tx-col"><a href="https://cexplorer.io/tx/6a7f2458c9a188e3644ba0bb60eb99a9bc3151999f1405ed58b36991b2b4bf15" target="_blank" class="tx-link">6a7f2458c9a188e3...</a></td>
+        </tr>
+<tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qx9q2glur292l7vc9v58httexgj76hnxnzfwhjt9zgmlttg8pdlwxlchzchws3294g2q3jrmn9duj36asp2e08yenrgsjedlu9/schedule" target="_blank" class="addr">addr1qx9q2glur292l7vc9v58httexgj76hnxnzfwhjt9zgmlttg8pdlwxlchzchws3294g2q3jrmn9duj36asp2e08yenrgsjedlu9</a></td>
           <td>Thaw #0: redeemable, no tx_id, but 5,691.630189 NIGHT delivered 1x on-chain vs 0 confirmed</td>
           <td class="tx-col"><a href="https://cexplorer.io/tx/5934bd1702565f59be2921a46e16f7060b813d02f5f99116e57446843550a2db" target="_blank" class="tx-link">5934bd1702565f59...</a></td>
@@ -7596,6 +7741,11 @@
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qxcjpk5lgake0hxfu2cfwmfptn4x9w4l6mx4363jj4j2thrlrd4m932lrklm6vfczwkcnywmfg4fyzhvz6v9xwlpp8js7qk9dd/schedule" target="_blank" class="addr">addr1qxcjpk5lgake0hxfu2cfwmfptn4x9w4l6mx4363jj4j2thrlrd4m932lrklm6vfczwkcnywmfg4fyzhvz6v9xwlpp8js7qk9dd</a></td>
           <td>Thaw #0: redeemable, no tx_id, but 5,597.393607 NIGHT delivered 1x on-chain vs 0 confirmed</td>
           <td class="tx-col"><a href="https://cexplorer.io/tx/88033b6efee32ad4e86855153736fa53c2900dd92e31e9b084a9d4836cd2b81d" target="_blank" class="tx-link">88033b6efee32ad4...</a></td>
+        </tr>
+<tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qxa988crm6h2vq87f0vnr22yrh3aq9f6h8pxe837k6ysccagc8cfslm6r28hh4xsq3mw0xrzm0wy88t03cfrr09epyzqfzydka/schedule" target="_blank" class="addr">addr1qxa988crm6h2vq87f0vnr22yrh3aq9f6h8pxe837k6ysccagc8cfslm6r28hh4xsq3mw0xrzm0wy88t03cfrr09epyzqfzydka</a></td>
+          <td>Thaw #0: redeemable, no tx_id, but 5,588.556523 NIGHT delivered 1x on-chain vs 0 confirmed</td>
+          <td class="tx-col"><a href="https://cexplorer.io/tx/964f4d23a3b9ce8516df82c356630ad724efec43c8f9071ccdf7597fac09b40d" target="_blank" class="tx-link">964f4d23a3b9ce85...</a></td>
         </tr>
 <tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q9fvc3wuelptmqrpah8aw6acgf0zdxafkv2mn35zg07s68trxqy9vut6tm54m373dvsmst3h6y7x772wmmldt08cscjqvqwgc2/schedule" target="_blank" class="addr">addr1q9fvc3wuelptmqrpah8aw6acgf0zdxafkv2mn35zg07s68trxqy9vut6tm54m373dvsmst3h6y7x772wmmldt08cscjqvqwgc2</a></td>
@@ -7921,6 +8071,11 @@
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qxpa0r5cc7lma2s87n0tgzal4208y9qd5302qp0vysjej7ymvz3r3s76ad9svajx7az77k7v9206vxked7wm6djgav0srmgq5l/schedule" target="_blank" class="addr">addr1qxpa0r5cc7lma2s87n0tgzal4208y9qd5302qp0vysjej7ymvz3r3s76ad9svajx7az77k7v9206vxked7wm6djgav0srmgq5l</a></td>
           <td>Thaw #0: redeemable, no tx_id, but 4,852.612902 NIGHT delivered 1x on-chain vs 0 confirmed</td>
           <td class="tx-col"><a href="https://cexplorer.io/tx/4b14a20f1cd1cf97d8b43ef0e03a9fa12655942bb8cf334e6b1aacabe9f3145b" target="_blank" class="tx-link">4b14a20f1cd1cf97...</a></td>
+        </tr>
+<tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qxmwhnnwyajvud3kdz0atxqrzl2dddyapnlnadkjnk7mwe42gla328fjqlftgslm8yasr2qagdlx7ah6v2rz7myqp83qzgm3qj/schedule" target="_blank" class="addr">addr1qxmwhnnwyajvud3kdz0atxqrzl2dddyapnlnadkjnk7mwe42gla328fjqlftgslm8yasr2qagdlx7ah6v2rz7myqp83qzgm3qj</a></td>
+          <td>Thaw #0: redeemable, no tx_id, but 4,832.562914 NIGHT delivered 1x on-chain vs 0 confirmed</td>
+          <td class="tx-col"><a href="https://cexplorer.io/tx/511cd9028079a12852f1d0103078c51c16a5e85a924ce8aad3496ad6157cfadc" target="_blank" class="tx-link">511cd9028079a128...</a></td>
         </tr>
 <tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q8lu2un6v8zkz8decydfvu7zafhwffmjnumy4gz48y3tcamahks3k2txf8vnxt6677xt4t8vldrsccqjjec0juqvvvcqdc575n/schedule" target="_blank" class="addr">addr1q8lu2un6v8zkz8decydfvu7zafhwffmjnumy4gz48y3tcamahks3k2txf8vnxt6677xt4t8vldrsccqjjec0juqvvvcqdc575n</a></td>
@@ -8323,6 +8478,11 @@
           <td class="tx-col"><a href="https://cexplorer.io/tx/752b5a377e55cad4f7e44391d0600068d2574adb49dcbf32aaa67935fadfe25d" target="_blank" class="tx-link">752b5a377e55cad4...</a></td>
         </tr>
 <tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q9luv8vqxclfl9g2lxg2gkwa86ka4a628a05el8x3548ydzcnxatasz406lfhv6xrfm4dnwjrjnk8ucte9qyjpqspeqq53qf9u/schedule" target="_blank" class="addr">addr1q9luv8vqxclfl9g2lxg2gkwa86ka4a628a05el8x3548ydzcnxatasz406lfhv6xrfm4dnwjrjnk8ucte9qyjpqspeqq53qf9u</a></td>
+          <td>Thaw #0: redeemable, no tx_id, but 4,330.804442 NIGHT delivered 1x on-chain vs 0 confirmed</td>
+          <td class="tx-col"><a href="https://cexplorer.io/tx/8006cf110b62fe6bc298614273bf928cb3442a1eb4b6e61c202962285c03658a" target="_blank" class="tx-link">8006cf110b62fe6b...</a></td>
+        </tr>
+<tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q8xjeyqpx0k5eq2xjehczdjyulkdyvd7e3dwn3emp7c5863w7rjpss25yyu27r64s95rvdpm0v849algjr3md4x8wk9qppt4gf/schedule" target="_blank" class="addr">addr1q8xjeyqpx0k5eq2xjehczdjyulkdyvd7e3dwn3emp7c5863w7rjpss25yyu27r64s95rvdpm0v849algjr3md4x8wk9qppt4gf</a></td>
           <td>Thaw #0: redeemable, no tx_id, but 4,329.069169 NIGHT delivered 1x on-chain vs 0 confirmed</td>
           <td class="tx-col"><a href="https://cexplorer.io/tx/ca5a32e452e245b246e548d09db33e68d6e13f7c919c28ad331a41f0dd27d8ef" target="_blank" class="tx-link">ca5a32e452e245b2...</a></td>
@@ -8603,6 +8763,11 @@
           <td class="tx-col"><a href="https://cexplorer.io/tx/5b13750bd28ade6a7150477dcf51f2a97cf7705a73b5efe0ceea77ccc7cff3f5" target="_blank" class="tx-link">5b13750bd28ade6a...</a></td>
         </tr>
 <tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qyxezqdaa8cptpclmdmgg6w9mevq7pxnjj8xzg4lkdt88k75jcnn07dr2rqw5tw656v64f0kme093hhvr552c8q76daq2tavwa/schedule" target="_blank" class="addr">addr1qyxezqdaa8cptpclmdmgg6w9mevq7pxnjj8xzg4lkdt88k75jcnn07dr2rqw5tw656v64f0kme093hhvr552c8q76daq2tavwa</a></td>
+          <td>Thaw #0: redeemable, no tx_id, but 3,731.073881 NIGHT delivered 1x on-chain vs 0 confirmed</td>
+          <td class="tx-col"><a href="https://cexplorer.io/tx/8a04affa7b7a7b4b9ef3f09f10f2a6b68fd859bb36ccbd093bbbf660fde07c16" target="_blank" class="tx-link">8a04affa7b7a7b4b...</a></td>
+        </tr>
+<tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qytznghsu4dm47rk5em00tkzxnmp505nynp3ela2kse4rjgfse39zr552j2vqd8ktrkptt8lav4xrcatv95ppavx6zuq9y2xt8/schedule" target="_blank" class="addr">addr1qytznghsu4dm47rk5em00tkzxnmp505nynp3ela2kse4rjgfse39zr552j2vqd8ktrkptt8lav4xrcatv95ppavx6zuq9y2xt8</a></td>
           <td>Thaw #0: redeemable, no tx_id, but 3,725.360367 NIGHT delivered 1x on-chain vs 0 confirmed</td>
           <td class="tx-col"><a href="https://cexplorer.io/tx/d7d7bc4ac49748e2e42fec62fc0112a2d5eb7767a79de0ac583165b95d5841b9" target="_blank" class="tx-link">d7d7bc4ac49748e2...</a></td>
@@ -8871,6 +9036,11 @@
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q87u09xj62u5wzggmvgk9uzj7r5u9kysz9aff485dnwu5uw6ts4dxky2mx4maquh554uxt60w4wvmcqf0wxhqemkhmjqufldsd/schedule" target="_blank" class="addr">addr1q87u09xj62u5wzggmvgk9uzj7r5u9kysz9aff485dnwu5uw6ts4dxky2mx4maquh554uxt60w4wvmcqf0wxhqemkhmjqufldsd</a></td>
           <td>Thaw #0: redeemable, no tx_id, but 3,431.569274 NIGHT delivered 1x on-chain vs 0 confirmed</td>
           <td class="tx-col"><a href="https://cexplorer.io/tx/2f557d5b0bc5a62d6d8e0bed36bb8cf282fc1cab5088e62a98d7df104ce870cd" target="_blank" class="tx-link">2f557d5b0bc5a62d...</a></td>
+        </tr>
+<tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qxkkzzh5nwnnv56vdcee4el84tdjnwq6epuu0vuzsrx39zjx9aq9pq9vjtpm078tcyc6jryegn68gxscglduxg2swrpswwr4hn/schedule" target="_blank" class="addr">addr1qxkkzzh5nwnnv56vdcee4el84tdjnwq6epuu0vuzsrx39zjx9aq9pq9vjtpm078tcyc6jryegn68gxscglduxg2swrpswwr4hn</a></td>
+          <td>Thaw #0: redeemable, no tx_id, but 3,410.237690 NIGHT delivered 1x on-chain vs 0 confirmed</td>
+          <td class="tx-col"><a href="https://cexplorer.io/tx/9961417aab9c982a61e94a3bb1e04f0c03740e2469d0f993b790a22e6fcd7261" target="_blank" class="tx-link">9961417aab9c982a...</a></td>
         </tr>
 <tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q8mkczsmrg3kdnxveewcsfc5eknpw4gxpav9d24f0ctuvq2ftwws802nhx4snm0n9wp76nnam3eyrf9khx5v4fdgc6hqtj284l/schedule" target="_blank" class="addr">addr1q8mkczsmrg3kdnxveewcsfc5eknpw4gxpav9d24f0ctuvq2ftwws802nhx4snm0n9wp76nnam3eyrf9khx5v4fdgc6hqtj284l</a></td>
@@ -10363,6 +10533,11 @@
           <td class="tx-col"><a href="https://cexplorer.io/tx/1cc656ff256089da5d8b990a4f197243533ebcc7b41545d46364b81c61426480" target="_blank" class="tx-link">1cc656ff256089da...</a></td>
         </tr>
 <tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qyexnhut77ceyzjsvgym8u9qhgxptrttxm9mfw9uy2hcycu9msltjqhjchh2k6ekecmtmratneydhyqe5cj5km2nvw3q5rggjm/schedule" target="_blank" class="addr">addr1qyexnhut77ceyzjsvgym8u9qhgxptrttxm9mfw9uy2hcycu9msltjqhjchh2k6ekecmtmratneydhyqe5cj5km2nvw3q5rggjm</a></td>
+          <td>Thaw #0: redeemable, no tx_id, but 2,108.508392 NIGHT delivered 1x on-chain vs 0 confirmed</td>
+          <td class="tx-col"><a href="https://cexplorer.io/tx/ebe33a825dc10980c549dca2878a1a8f7da5f0a426fdfbcd1b718c74a2c9c1f1" target="_blank" class="tx-link">ebe33a825dc10980...</a></td>
+        </tr>
+<tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qxw579qap8dv78jrqa7p3z7jydcdwpqctn3ve0djcu2drlcmrjc93njxfud7uw4p7tnu5r4mnm4ztl2kmh3g08r5ddwqg5dfr2/schedule" target="_blank" class="addr">addr1qxw579qap8dv78jrqa7p3z7jydcdwpqctn3ve0djcu2drlcmrjc93njxfud7uw4p7tnu5r4mnm4ztl2kmh3g08r5ddwqg5dfr2</a></td>
           <td>Thaw #0: redeemable, no tx_id, but 2,107.933643 NIGHT delivered 1x on-chain vs 0 confirmed</td>
           <td class="tx-col"><a href="https://cexplorer.io/tx/172b1655ff1a07a5b746ba8166c08afcf2a225fe5464e6a142449e58648d18c1" target="_blank" class="tx-link">172b1655ff1a07a5...</a></td>
@@ -10426,6 +10601,11 @@
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q9xt739h3uzz3uwlgc7lhf4w5knpgkqmfdpcx3xmc82558wf22uq96r20jda0su7ecg8tvk7c7pcszu6kuavfg9xemgqvkczv3/schedule" target="_blank" class="addr">addr1q9xt739h3uzz3uwlgc7lhf4w5knpgkqmfdpcx3xmc82558wf22uq96r20jda0su7ecg8tvk7c7pcszu6kuavfg9xemgqvkczv3</a></td>
           <td>Thaw #0: redeemable, no tx_id, but 2,077.524721 NIGHT delivered 1x on-chain vs 0 confirmed</td>
           <td class="tx-col"><a href="https://cexplorer.io/tx/2e7cda4c1d4f8c7173c6d9772ee991c2507f195b9d0871cce4f9cb61121f46b0" target="_blank" class="tx-link">2e7cda4c1d4f8c71...</a></td>
+        </tr>
+<tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q80cn8p2rwlpkq0kpqwj64mha5dxp4z84zg9xarpnmdakcjl2tkmyp6q2tsxc2cmcfc9tu92fxf2nzfyhcfna7rv5lesrl5gmz/schedule" target="_blank" class="addr">addr1q80cn8p2rwlpkq0kpqwj64mha5dxp4z84zg9xarpnmdakcjl2tkmyp6q2tsxc2cmcfc9tu92fxf2nzfyhcfna7rv5lesrl5gmz</a></td>
+          <td>Thaw #0: redeemable, no tx_id, but 2,074.676153 NIGHT delivered 1x on-chain vs 0 confirmed</td>
+          <td class="tx-col"><a href="https://cexplorer.io/tx/ebc5f607f6b2c5a7d85943bdc9b50722cbcf4f687f5536ee3215854ce517dccd" target="_blank" class="tx-link">ebc5f607f6b2c5a7...</a></td>
         </tr>
 <tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q8ks7tmjj5fs07jzn6a0nun9uvkn77jvcq6rc3s50ryze0kp36l7wpvyx2fuxt2syxdqup0rrjtsvhlg3f53hk6fukasw6ddpu/schedule" target="_blank" class="addr">addr1q8ks7tmjj5fs07jzn6a0nun9uvkn77jvcq6rc3s50ryze0kp36l7wpvyx2fuxt2syxdqup0rrjtsvhlg3f53hk6fukasw6ddpu</a></td>
@@ -11518,6 +11698,11 @@
           <td class="tx-col"><a href="https://cexplorer.io/tx/bb80dfdaafc3fa03607a4084bd20ab773fcd8ff3a3658dda19cf2d1f0a18cd7f" target="_blank" class="tx-link">bb80dfdaafc3fa03...</a></td>
         </tr>
 <tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q9pz5gpujflthn24ehudf23ds28q2a53g9sgcyl8lax87psvaleh3tlqf5580wsf9u70qlhlv4gcdxfyevvzcgsdfcesl29ntg/schedule" target="_blank" class="addr">addr1q9pz5gpujflthn24ehudf23ds28q2a53g9sgcyl8lax87psvaleh3tlqf5580wsf9u70qlhlv4gcdxfyevvzcgsdfcesl29ntg</a></td>
+          <td>Thaw #0: redeemable, no tx_id, but 1,481.298480 NIGHT delivered 1x on-chain vs 0 confirmed</td>
+          <td class="tx-col"><a href="https://cexplorer.io/tx/f77f5b728677a36620b6e4243e0756c798d53e84c67cd8f75312f3471a5280d4" target="_blank" class="tx-link">f77f5b728677a366...</a></td>
+        </tr>
+<tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qysve8jny7q0qhczpxt2fcmmmerdvdkq2enxfp9yc9xesxuef0lt0q4x3ddmja87l70vl7szrwymgl07ss6yd3j2u5lqqtruuf/schedule" target="_blank" class="addr">addr1qysve8jny7q0qhczpxt2fcmmmerdvdkq2enxfp9yc9xesxuef0lt0q4x3ddmja87l70vl7szrwymgl07ss6yd3j2u5lqqtruuf</a></td>
           <td>Thaw #0: redeemable, no tx_id, but 1,479.859205 NIGHT delivered 1x on-chain vs 0 confirmed</td>
           <td class="tx-col"><a href="https://cexplorer.io/tx/1931ccf04e9a25ccf0379c34952fefbcd58f2c99d85be72a2f3dcb0c539cab73" target="_blank" class="tx-link">1931ccf04e9a25cc...</a></td>
@@ -11718,6 +11903,11 @@
           <td class="tx-col"><a href="https://cexplorer.io/tx/806c4b228c6bec7037e88bb85a430bd4d86b5a6432be234621f12436d9e97936" target="_blank" class="tx-link">806c4b228c6bec70...</a></td>
         </tr>
 <tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qy8ymfltj7tmkm2mg9gmlwkv9mhvmc9xtv4mkt053vxym54mfdehv79h37q05wxcxcdw3e998mpxqxvgpp8nhn9zd3es9m5pv2/schedule" target="_blank" class="addr">addr1qy8ymfltj7tmkm2mg9gmlwkv9mhvmc9xtv4mkt053vxym54mfdehv79h37q05wxcxcdw3e998mpxqxvgpp8nhn9zd3es9m5pv2</a></td>
+          <td>Thaw #0: redeemable, no tx_id, but 1,330.781985 NIGHT delivered 1x on-chain vs 0 confirmed</td>
+          <td class="tx-col"><a href="https://cexplorer.io/tx/7d43bccc2cf93908ff86c8193e1443ba4ac9aac6e733bb16ad604b3a2d8b05a4" target="_blank" class="tx-link">7d43bccc2cf93908...</a></td>
+        </tr>
+<tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qy6ykh3ljpw2vqdpzj30whr09zmst62ch9knyxwjets00k9vvngte4gmsz4mm9tk3l7tgq4lpr4r6w7pludf7p9a47tq60w8fu/schedule" target="_blank" class="addr">addr1qy6ykh3ljpw2vqdpzj30whr09zmst62ch9knyxwjets00k9vvngte4gmsz4mm9tk3l7tgq4lpr4r6w7pludf7p9a47tq60w8fu</a></td>
           <td>Thaw #0: redeemable, no tx_id, but 1,329.998948 NIGHT delivered 1x on-chain vs 0 confirmed</td>
           <td class="tx-col"><a href="https://cexplorer.io/tx/ff1c644452e3e8973504c3213e46a18e072d4a9372bab9a6831a8fad2fa4b7c7" target="_blank" class="tx-link">ff1c644452e3e897...</a></td>
@@ -11876,6 +12066,11 @@
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q9x06mx2a88tcsw32jwr0u8t63ua7kgpzdrz2yne8nrmr506huk9ndc7ckepsu5vmqe54lrrtdtqepr932zct3d0a2xsdh9q3r/schedule" target="_blank" class="addr">addr1q9x06mx2a88tcsw32jwr0u8t63ua7kgpzdrz2yne8nrmr506huk9ndc7ckepsu5vmqe54lrrtdtqepr932zct3d0a2xsdh9q3r</a></td>
           <td>Thaw #0: redeemable, no tx_id, but 1,271.903351 NIGHT delivered 1x on-chain vs 0 confirmed</td>
           <td class="tx-col"><a href="https://cexplorer.io/tx/d02c0c3a88de308dcc64e4cb328e894d91f0f5f21dba25468ef756e71fb353bc" target="_blank" class="tx-link">d02c0c3a88de308d...</a></td>
+        </tr>
+<tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qychsvwlrvvje4ya4tnsa5c9zql2maggv7xqpv9v4kzxtzywmqm7cu80ejv36qns04yl8zn4ep34y35em2mspgq0su7s854pw2/schedule" target="_blank" class="addr">addr1qychsvwlrvvje4ya4tnsa5c9zql2maggv7xqpv9v4kzxtzywmqm7cu80ejv36qns04yl8zn4ep34y35em2mspgq0su7s854pw2</a></td>
+          <td>Thaw #0: redeemable, no tx_id, but 1,271.609346 NIGHT delivered 1x on-chain vs 0 confirmed</td>
+          <td class="tx-col"><a href="https://cexplorer.io/tx/11e94a1ddc35033bced8b234bb09aa2d20a7144ba57ded665ba8f624bdac3b25" target="_blank" class="tx-link">11e94a1ddc35033b...</a></td>
         </tr>
 <tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q9hhnxqmqte5hkcn9vy3c76hhvfewqz5aq75fuhuw4equ23ca6fxfhxywe3g0p4hz5uanvm94a56e5ptrflqua69rxsqajjmyg/schedule" target="_blank" class="addr">addr1q9hhnxqmqte5hkcn9vy3c76hhvfewqz5aq75fuhuw4equ23ca6fxfhxywe3g0p4hz5uanvm94a56e5ptrflqua69rxsqajjmyg</a></td>
@@ -12418,6 +12613,11 @@
           <td class="tx-col"><a href="https://cexplorer.io/tx/07a8b9d582810e51cca11dbdf810cb4650d743128471dae109a3c9996d32edd0" target="_blank" class="tx-link">07a8b9d582810e51...</a></td>
         </tr>
 <tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q8suufcnc7etp4k6k7ysqlpdy5aqtevpke7z4gllw05l9nyfcfv5jcghyuz68d7kj5l3xg4z4uaxh62yuf878sesq2ksnt6cga/schedule" target="_blank" class="addr">addr1q8suufcnc7etp4k6k7ysqlpdy5aqtevpke7z4gllw05l9nyfcfv5jcghyuz68d7kj5l3xg4z4uaxh62yuf878sesq2ksnt6cga</a></td>
+          <td>Thaw #0: redeemable, no tx_id, but 1,048.770300 NIGHT delivered 1x on-chain vs 0 confirmed</td>
+          <td class="tx-col"><a href="https://cexplorer.io/tx/970a2744b151daa5d104e5841f7a44ee88fc97ef504003246984917cdbbf88b1" target="_blank" class="tx-link">970a2744b151daa5...</a></td>
+        </tr>
+<tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qxswat9rfcghy6jqrs2vn88rkm854448y84xk3ll5pe3kk008m8pg9p2z45wyujxsqtc0fplqv2q87gqae5hgg47ezus3x4m9j/schedule" target="_blank" class="addr">addr1qxswat9rfcghy6jqrs2vn88rkm854448y84xk3ll5pe3kk008m8pg9p2z45wyujxsqtc0fplqv2q87gqae5hgg47ezus3x4m9j</a></td>
           <td>Thaw #0: redeemable, no tx_id, but 1,048.255381 NIGHT delivered 1x on-chain vs 0 confirmed</td>
           <td class="tx-col"><a href="https://cexplorer.io/tx/62993e2fdfbe3192b00ca1345a3a3c1d3f0c1ddc9ef05e5c9120cb152d5c07cf" target="_blank" class="tx-link">62993e2fdfbe3192...</a></td>
@@ -12466,6 +12666,11 @@
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qycns54zj3muwxtrhr20kdrtuxevrqqwmfs2hal4534mj7myzny0lgxsh5x7x7pz7x98wadeythpf2glcqdj2q9t4g8qu3t0sj/schedule" target="_blank" class="addr">addr1qycns54zj3muwxtrhr20kdrtuxevrqqwmfs2hal4534mj7myzny0lgxsh5x7x7pz7x98wadeythpf2glcqdj2q9t4g8qu3t0sj</a></td>
           <td>Thaw #0: redeemable, no tx_id, but 1,030.496325 NIGHT delivered 1x on-chain vs 0 confirmed</td>
           <td class="tx-col"><a href="https://cexplorer.io/tx/26c20c5fd94eb17b10b70045f1118e9052a34a6eba46ea0c5aa8ee680fdd71cf" target="_blank" class="tx-link">26c20c5fd94eb17b...</a></td>
+        </tr>
+<tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qxydmlteczw5typmvx9ufs95p92frz0sa4rtk7swv4qlcnrxudg2w62thdyfcn97tu2n9s9y2ja46zldr9h39f0wzwwqtp99n3/schedule" target="_blank" class="addr">addr1qxydmlteczw5typmvx9ufs95p92frz0sa4rtk7swv4qlcnrxudg2w62thdyfcn97tu2n9s9y2ja46zldr9h39f0wzwwqtp99n3</a></td>
+          <td>Thaw #0: redeemable, no tx_id, but 1,029.211218 NIGHT delivered 1x on-chain vs 0 confirmed</td>
+          <td class="tx-col"><a href="https://cexplorer.io/tx/fb901b464556230b411473687b4986b84af4ca7e9b7225bc22c64eea1c817ee5" target="_blank" class="tx-link">fb901b464556230b...</a></td>
         </tr>
 <tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q9lxq3yhwu5vl5e42n0w0yxrraddyq6gtkx8k65yw6tdp39qwm4vu984sswasfvz3d5dvknhs58l8xn25k8t72s9czwqwkxewa/schedule" target="_blank" class="addr">addr1q9lxq3yhwu5vl5e42n0w0yxrraddyq6gtkx8k65yw6tdp39qwm4vu984sswasfvz3d5dvknhs58l8xn25k8t72s9czwqwkxewa</a></td>
@@ -12766,6 +12971,11 @@
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q8fm9g4wl5tel70weu0umg356pk88lkkjj548crjad3035nr80gvjvdg4652rdvlgq334q3u6ea8a835damuzl0we8ysee3ksu/schedule" target="_blank" class="addr">addr1q8fm9g4wl5tel70weu0umg356pk88lkkjj548crjad3035nr80gvjvdg4652rdvlgq334q3u6ea8a835damuzl0we8ysee3ksu</a></td>
           <td>Thaw #0: redeemable, no tx_id, but 936.881962 NIGHT delivered 1x on-chain vs 0 confirmed</td>
           <td class="tx-col"><a href="https://cexplorer.io/tx/14a9808dd5434a2b700aa4fd72a2ca6d8d5d6a4a10a1b7362f2e3878a3deeea9" target="_blank" class="tx-link">14a9808dd5434a2b...</a></td>
+        </tr>
+<tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q9r9qhv26xhf2elxsksvnv3ef9hqrme54z6q8r377h9ck4rgtndy47jnmntd73rumkxxvjrpw9fvj8ganwh9lxredlps5aae6v/schedule" target="_blank" class="addr">addr1q9r9qhv26xhf2elxsksvnv3ef9hqrme54z6q8r377h9ck4rgtndy47jnmntd73rumkxxvjrpw9fvj8ganwh9lxredlps5aae6v</a></td>
+          <td>Thaw #0: redeemable, no tx_id, but 936.866308 NIGHT delivered 1x on-chain vs 0 confirmed</td>
+          <td class="tx-col"><a href="https://cexplorer.io/tx/a8268ce63621f0cd546499c052b77fb5b33e8a7603e512b0a94f6279fad8369b" target="_blank" class="tx-link">a8268ce63621f0cd...</a></td>
         </tr>
 <tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q85hmgfxzjrplwwwtsalh8tlz578fdqgutwyvsuslv06wca7uuan3kws2z50c2zgcfgl32uc7lnw7ac07722dyhpx6tsr9xwad/schedule" target="_blank" class="addr">addr1q85hmgfxzjrplwwwtsalh8tlz578fdqgutwyvsuslv06wca7uuan3kws2z50c2zgcfgl32uc7lnw7ac07722dyhpx6tsr9xwad</a></td>
@@ -13708,6 +13918,11 @@
           <td class="tx-col"><a href="https://cexplorer.io/tx/bccba8afdb017aee4b5f68a8ee0fef93fac0f9f5ed253c482ea567531fee31bc" target="_blank" class="tx-link">bccba8afdb017aee...</a></td>
         </tr>
 <tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q96mh48luwa83vhp2d6aj8g72zfkyp0q35n6a2q0d7u3ytr35w7rn882k2c2lle0xsdsmpn78nw084n7trqtw5l8302qew9p7n/schedule" target="_blank" class="addr">addr1q96mh48luwa83vhp2d6aj8g72zfkyp0q35n6a2q0d7u3ytr35w7rn882k2c2lle0xsdsmpn78nw084n7trqtw5l8302qew9p7n</a></td>
+          <td>Thaw #0: redeemable, no tx_id, but 747.709674 NIGHT delivered 1x on-chain vs 0 confirmed</td>
+          <td class="tx-col"><a href="https://cexplorer.io/tx/4a5057c8836e2acdc24043a6e74c2e65f9056b844548706db48c200c565c1b12" target="_blank" class="tx-link">4a5057c8836e2acd...</a></td>
+        </tr>
+<tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qx82q98vpmt003fvpwm4slvjukwyvna4x7rsf00jlpnn9d8qg47mtf84y2c58mhhdkmc0rkzgsxhjw8m5w037gaysjls0cw4ym/schedule" target="_blank" class="addr">addr1qx82q98vpmt003fvpwm4slvjukwyvna4x7rsf00jlpnn9d8qg47mtf84y2c58mhhdkmc0rkzgsxhjw8m5w037gaysjls0cw4ym</a></td>
           <td>Thaw #0: redeemable, no tx_id, but 746.258136 NIGHT delivered 1x on-chain vs 0 confirmed</td>
           <td class="tx-col"><a href="https://cexplorer.io/tx/30033a9f135e716930eddd3adbc1822218c1c360356d7f10f7e42af6a731a2f0" target="_blank" class="tx-link">30033a9f135e7169...</a></td>
@@ -14373,6 +14588,11 @@
           <td class="tx-col"><a href="https://cexplorer.io/tx/397843e844706fc64e1ac9113d7d8e1ca38a04405aabd43c624b5cde85552b82" target="_blank" class="tx-link">397843e844706fc6...</a></td>
         </tr>
 <tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qx56md5m6almvfspku3upqguvwsd4me2lsv8ae3l27mkd4lflfcdxar8jw2r09h4fdxf3zrf4t8wqk9ynqgcpehgv3vqsax0fy/schedule" target="_blank" class="addr">addr1qx56md5m6almvfspku3upqguvwsd4me2lsv8ae3l27mkd4lflfcdxar8jw2r09h4fdxf3zrf4t8wqk9ynqgcpehgv3vqsax0fy</a></td>
+          <td>Thaw #0: redeemable, no tx_id, but 569.510503 NIGHT delivered 1x on-chain vs 0 confirmed</td>
+          <td class="tx-col"><a href="https://cexplorer.io/tx/9d3f3ab47a70ff8a5ee9e3d1905c8771e4c953973fd3c35fbb8a2c968ff007a3" target="_blank" class="tx-link">9d3f3ab47a70ff8a...</a></td>
+        </tr>
+<tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qyewp79m9cyrxh6myfrhh262u0rcw75u0rspz6kg58ftrr904vmghv5nxg0c8q6vw3afwrz85p0z8534dt0tnv4rhsgs5uwvdc/schedule" target="_blank" class="addr">addr1qyewp79m9cyrxh6myfrhh262u0rcw75u0rspz6kg58ftrr904vmghv5nxg0c8q6vw3afwrz85p0z8534dt0tnv4rhsgs5uwvdc</a></td>
           <td>Thaw #0: redeemable, no tx_id, but 565.632777 NIGHT delivered 1x on-chain vs 0 confirmed</td>
           <td class="tx-col"><a href="https://cexplorer.io/tx/12900e2700199883254cc0399a0246ee12b0a23f164c9f288683d6210c6e3ffc" target="_blank" class="tx-link">12900e2700199883...</a></td>
@@ -14506,6 +14726,11 @@
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qyz2t3sfjexh34gts99jx3hqf5fc6kcupsuggvt9j9nqg0m26ajsrdp3hm432fe3h8r5p8v4dj00mdy2nfsqv582ccascyvx07/schedule" target="_blank" class="addr">addr1qyz2t3sfjexh34gts99jx3hqf5fc6kcupsuggvt9j9nqg0m26ajsrdp3hm432fe3h8r5p8v4dj00mdy2nfsqv582ccascyvx07</a></td>
           <td>Thaw #0: redeemable, no tx_id, but 534.546793 NIGHT delivered 1x on-chain vs 0 confirmed</td>
           <td class="tx-col"><a href="https://cexplorer.io/tx/7eb19a0afc7814e7ef0cb854c27236a59ad45ebb077c80cab3261669252e9329" target="_blank" class="tx-link">7eb19a0afc7814e7...</a></td>
+        </tr>
+<tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q8f5whtgn82drrjnw28n095nrvx4e8c7yltg3df7mt8zcxnrhdvuht5u59fcrc8t4wqfq2d80yparyh99pad6578eyxsmscxzd/schedule" target="_blank" class="addr">addr1q8f5whtgn82drrjnw28n095nrvx4e8c7yltg3df7mt8zcxnrhdvuht5u59fcrc8t4wqfq2d80yparyh99pad6578eyxsmscxzd</a></td>
+          <td>Thaw #0: redeemable, no tx_id, but 534.453042 NIGHT delivered 1x on-chain vs 0 confirmed</td>
+          <td class="tx-col"><a href="https://cexplorer.io/tx/58bb01b31702097895105a563b0e78bfac9efd8454859eaba38ec7a8e169605d" target="_blank" class="tx-link">58bb01b317020978...</a></td>
         </tr>
 <tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q88ns4cknvga05qpxxgrjqga3wzu3zl06kfwz8stf8ct657478m8lykft7862pfgzczvmsx8n06edzsc89lj0kspm57qm5qapk/schedule" target="_blank" class="addr">addr1q88ns4cknvga05qpxxgrjqga3wzu3zl06kfwz8stf8ct657478m8lykft7862pfgzczvmsx8n06edzsc89lj0kspm57qm5qapk</a></td>
@@ -14648,6 +14873,11 @@
           <td class="tx-col"><a href="https://cexplorer.io/tx/24fcd9b3ed35d4a0546830718d9a7e8a5bbb3ffab329834e3df2aa1f871a9c17" target="_blank" class="tx-link">24fcd9b3ed35d4a0...</a></td>
         </tr>
 <tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qy2hmj6asszcur37w49zatxe9vhrwr8a4mf93hrlufu63gl5k35adqeevzv8mekuecjsg7tna6ctfx6k9vyul8vsymqq20yaxx/schedule" target="_blank" class="addr">addr1qy2hmj6asszcur37w49zatxe9vhrwr8a4mf93hrlufu63gl5k35adqeevzv8mekuecjsg7tna6ctfx6k9vyul8vsymqq20yaxx</a></td>
+          <td>Thaw #0: redeemable, no tx_id, but 498.671997 NIGHT delivered 1x on-chain vs 0 confirmed</td>
+          <td class="tx-col"><a href="https://cexplorer.io/tx/60e4d1f9b39fbd9680c555b2975dfcf303db8c245a4e3e5cc5403f77257b5c72" target="_blank" class="tx-link">60e4d1f9b39fbd96...</a></td>
+        </tr>
+<tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qxmcwjad7lp56s834p692dhw3mzt52gh824fw42rl7v75e7fhv7wm6tpqwatqpxpkpv9nctfcndw6wgf3gpvp07tjrxssq07g7/schedule" target="_blank" class="addr">addr1qxmcwjad7lp56s834p692dhw3mzt52gh824fw42rl7v75e7fhv7wm6tpqwatqpxpkpv9nctfcndw6wgf3gpvp07tjrxssq07g7</a></td>
           <td>Thaw #0: redeemable, no tx_id, but 498.170947 NIGHT delivered 1x on-chain vs 0 confirmed</td>
           <td class="tx-col"><a href="https://cexplorer.io/tx/a6d4774a846ec8ec2380d7a56a243a6c3a443e125861955b0763439a4f911280" target="_blank" class="tx-link">a6d4774a846ec8ec...</a></td>
@@ -14706,6 +14936,11 @@
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qx3h8a3eyqrgry4maryv8pfeqypudrakftuzwyunw9s3z9r26s0gz2q3euemqlv6tpczc2gum5g36vur2u6fjg3al9gqesf2ly/schedule" target="_blank" class="addr">addr1qx3h8a3eyqrgry4maryv8pfeqypudrakftuzwyunw9s3z9r26s0gz2q3euemqlv6tpczc2gum5g36vur2u6fjg3al9gqesf2ly</a></td>
           <td>Thaw #0: redeemable, no tx_id, but 482.928739 NIGHT delivered 1x on-chain vs 0 confirmed</td>
           <td class="tx-col"><a href="https://cexplorer.io/tx/c8b1a092f3c221091531a340ebadf13effd22690e6f003302cf1d83ef57018b3" target="_blank" class="tx-link">c8b1a092f3c22109...</a></td>
+        </tr>
+<tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qxc0nqm5z492rgc4tlsjr47jdf6jt6d2zwgmagjsxn73euvm989nqvupvrhzp6ugxev9wvxgsn5phgctqr0pr80kw3hqs6tvnv/schedule" target="_blank" class="addr">addr1qxc0nqm5z492rgc4tlsjr47jdf6jt6d2zwgmagjsxn73euvm989nqvupvrhzp6ugxev9wvxgsn5phgctqr0pr80kw3hqs6tvnv</a></td>
+          <td>Thaw #0: redeemable, no tx_id, but 480.627986 NIGHT delivered 1x on-chain vs 0 confirmed</td>
+          <td class="tx-col"><a href="https://cexplorer.io/tx/c5ef2c3cf93f533299cff1e829eaa14006be3f04ea24b220e763cf24638c5962" target="_blank" class="tx-link">c5ef2c3cf93f5332...</a></td>
         </tr>
 <tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qy8jczkuctyhljjjymm8gx86c5twqv94k50zltduj36tucendmhz56fjpdxvnk5y4g8walq5r9rlzm4r6aem5qtcsm7s3x60lm/schedule" target="_blank" class="addr">addr1qy8jczkuctyhljjjymm8gx86c5twqv94k50zltduj36tucendmhz56fjpdxvnk5y4g8walq5r9rlzm4r6aem5qtcsm7s3x60lm</a></td>
@@ -15031,6 +15266,11 @@
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qxp985vujuh290ykgy07afs3424rfnl299tknp9rhxjmvx4gwunasl2rycc90gxk22ttjrjhqj7w0u8hkkzyv9wf4y8qavp3ae/schedule" target="_blank" class="addr">addr1qxp985vujuh290ykgy07afs3424rfnl299tknp9rhxjmvx4gwunasl2rycc90gxk22ttjrjhqj7w0u8hkkzyv9wf4y8qavp3ae</a></td>
           <td>Thaw #0: redeemable, no tx_id, but 433.187494 NIGHT delivered 1x on-chain vs 0 confirmed</td>
           <td class="tx-col"><a href="https://cexplorer.io/tx/2934eaf32dfd133c001841b868f9a412fc8fa1498d3b3a691a7318a1fe22e3b0" target="_blank" class="tx-link">2934eaf32dfd133c...</a></td>
+        </tr>
+<tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q9ftzu7ckkfv75fgx2wu4260mzsrt9xtjhfxqw9e3nxesyyjx9v0eew2am4hmlree99mt2r26vl0zal8r8sj5663kyjst53s0j/schedule" target="_blank" class="addr">addr1q9ftzu7ckkfv75fgx2wu4260mzsrt9xtjhfxqw9e3nxesyyjx9v0eew2am4hmlree99mt2r26vl0zal8r8sj5663kyjst53s0j</a></td>
+          <td>Thaw #0: redeemable, no tx_id, but 433.180160 NIGHT delivered 1x on-chain vs 0 confirmed</td>
+          <td class="tx-col"><a href="https://cexplorer.io/tx/70fa6c5b7c8c14f388e2d9c1360d87c385e0bfa5cc7f4a5bd02e2acff76580ba" target="_blank" class="tx-link">70fa6c5b7c8c14f3...</a></td>
         </tr>
 <tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q9hxrsg062t4mcr5ujqqcmd4pdyaqaau09r5020cy8w2cwrjxt5chcl59zw5p3zmvl2zcp4xn5quqw0qevhue99gecsqduyrc7/schedule" target="_blank" class="addr">addr1q9hxrsg062t4mcr5ujqqcmd4pdyaqaau09r5020cy8w2cwrjxt5chcl59zw5p3zmvl2zcp4xn5quqw0qevhue99gecsqduyrc7</a></td>
@@ -15606,6 +15846,11 @@
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qyjjtt0m4hvhc68gzslwu4tamuf8y5jxzlcgle2hw8z6xlfaa08wu6556hee0xnnrsfrnq2gs3mlsdf9470hwyvpp52qgdx7ch/schedule" target="_blank" class="addr">addr1qyjjtt0m4hvhc68gzslwu4tamuf8y5jxzlcgle2hw8z6xlfaa08wu6556hee0xnnrsfrnq2gs3mlsdf9470hwyvpp52qgdx7ch</a></td>
           <td>Thaw #0: redeemable, no tx_id, but 355.942223 NIGHT delivered 1x on-chain vs 0 confirmed</td>
           <td class="tx-col"><a href="https://cexplorer.io/tx/452594365f290ba795b58c236634d7545e793553f7626a1252104cd0e4634eb8" target="_blank" class="tx-link">452594365f290ba7...</a></td>
+        </tr>
+<tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q9fq9em50jyxm8ppy99mcpclaf83zy5mw53yd499zwtmyzqv80nam0t8kckfh4c2v5rsmk5nxe0m4vt0kv4665afasvqhtuadp/schedule" target="_blank" class="addr">addr1q9fq9em50jyxm8ppy99mcpclaf83zy5mw53yd499zwtmyzqv80nam0t8kckfh4c2v5rsmk5nxe0m4vt0kv4665afasvqhtuadp</a></td>
+          <td>Thaw #0: redeemable, no tx_id, but 355.673124 NIGHT delivered 1x on-chain vs 0 confirmed</td>
+          <td class="tx-col"><a href="https://cexplorer.io/tx/17803d6a88db12015afeaa113ab2c7b35e41200189a50c2d56faa71aed341087" target="_blank" class="tx-link">17803d6a88db1201...</a></td>
         </tr>
 <tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qyrlga8qpjjksdg486lxhzkrlzapnesrcjsyr5qsrvvs0fl8q7kkn64g0xspnnm6w4f0k9f4rm7jqedh89g8aaxlqq4sctalhg/schedule" target="_blank" class="addr">addr1qyrlga8qpjjksdg486lxhzkrlzapnesrcjsyr5qsrvvs0fl8q7kkn64g0xspnnm6w4f0k9f4rm7jqedh89g8aaxlqq4sctalhg</a></td>
@@ -18238,6 +18483,11 @@
           <td class="tx-col"><a href="https://cexplorer.io/tx/ca5b4d73abd00c5ed6f7b524e592a25123290999ae97275f0cbf2a579dc58556" target="_blank" class="tx-link">ca5b4d73abd00c5e...</a></td>
         </tr>
 <tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q9hrqrcsuaetnu70qdr5qc95x8e2j5yr2thdausnfglr7aegaj658hew0x5dt6jj3504qxcej4g39yugs2p8yyps93tsgkgrmm/schedule" target="_blank" class="addr">addr1q9hrqrcsuaetnu70qdr5qc95x8e2j5yr2thdausnfglr7aegaj658hew0x5dt6jj3504qxcej4g39yugs2p8yyps93tsgkgrmm</a></td>
+          <td>Thaw #0: redeemable, no tx_id, but 146.706428 NIGHT delivered 1x on-chain vs 0 confirmed</td>
+          <td class="tx-col"><a href="https://cexplorer.io/tx/be1e79cb1dcf67e0d7fcf8bd0ae55231c640cad4c2724ff99e8f7fa48913f956" target="_blank" class="tx-link">be1e79cb1dcf67e0...</a></td>
+        </tr>
+<tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q8vrynqktq6z0seq6sm2rhy2klux4jusnav3t8ymvhw4udgluqc4tjr2xv5rz6che5vt0fkz0kmflhcc27nysxjyhsjsvxs5ug/schedule" target="_blank" class="addr">addr1q8vrynqktq6z0seq6sm2rhy2klux4jusnav3t8ymvhw4udgluqc4tjr2xv5rz6che5vt0fkz0kmflhcc27nysxjyhsjsvxs5ug</a></td>
           <td>Thaw #0: redeemable, no tx_id, but 146.568329 NIGHT delivered 1x on-chain vs 0 confirmed</td>
           <td class="tx-col"><a href="https://cexplorer.io/tx/1002e5504800ffc9f4939e038fa72958b7af02334798e6b756c347782442e0d8" target="_blank" class="tx-link">1002e5504800ffc9...</a></td>
@@ -18281,6 +18531,11 @@
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q8ddlgthk62agqjhf7qxrdp6hmk0rpw9facsjhpgqjsn9deq04a9n98w5dr4h4egz5x9al0gfsy3jxl6n56j5xpl6dlqpe60mc/schedule" target="_blank" class="addr">addr1q8ddlgthk62agqjhf7qxrdp6hmk0rpw9facsjhpgqjsn9deq04a9n98w5dr4h4egz5x9al0gfsy3jxl6n56j5xpl6dlqpe60mc</a></td>
           <td>Thaw #0: redeemable, no tx_id, but 145.502272 NIGHT delivered 1x on-chain vs 0 confirmed</td>
           <td class="tx-col"><a href="https://cexplorer.io/tx/98382c539a7929d68c8ba92569a9170402611e5d496f3e8cb2033229d926209f" target="_blank" class="tx-link">98382c539a7929d6...</a></td>
+        </tr>
+<tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qyv6n5tafd80dh4a2r2nheq55xl43vgh85jg0rdqcs5r4mx5jcnn07dr2rqw5tw656v64f0kme093hhvr552c8q76daqvu8kl2/schedule" target="_blank" class="addr">addr1qyv6n5tafd80dh4a2r2nheq55xl43vgh85jg0rdqcs5r4mx5jcnn07dr2rqw5tw656v64f0kme093hhvr552c8q76daqvu8kl2</a></td>
+          <td>Thaw #0: redeemable, no tx_id, but 144.198027 NIGHT delivered 1x on-chain vs 0 confirmed</td>
+          <td class="tx-col"><a href="https://cexplorer.io/tx/3efe14c702cde898dc8dbe77ff66fe404315d5ea2725ff8244c071b5ad0293e6" target="_blank" class="tx-link">3efe14c702cde898...</a></td>
         </tr>
 <tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qyd2p57y2e7s5e6f93j53ft2hxx3390vg2k2ez8zz2kslh5va4uzgxahkwj6pwaq8g0lt57f3z4mc6k9vvvqwdn7vjgsspjqlq/schedule" target="_blank" class="addr">addr1qyd2p57y2e7s5e6f93j53ft2hxx3390vg2k2ez8zz2kslh5va4uzgxahkwj6pwaq8g0lt57f3z4mc6k9vvvqwdn7vjgsspjqlq</a></td>
@@ -18403,6 +18658,11 @@
           <td class="tx-col"><a href="https://cexplorer.io/tx/5a176e224ce0a8b4d3fdeefe4b25146826315da6fc9e7c434427d18ada0fd7fa" target="_blank" class="tx-link">5a176e224ce0a8b4...</a></td>
         </tr>
 <tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q9ltpywv6hj6jdn9auh355fv5e0lsfj2zrznhfqd0e7q06t2p7m2643nxrpxnmt2f8zhux4fj00tdcmzexxgzrjg80lsp4zkpf/schedule" target="_blank" class="addr">addr1q9ltpywv6hj6jdn9auh355fv5e0lsfj2zrznhfqd0e7q06t2p7m2643nxrpxnmt2f8zhux4fj00tdcmzexxgzrjg80lsp4zkpf</a></td>
+          <td>Thaw #0: redeemable, no tx_id, but 137.655518 NIGHT delivered 1x on-chain vs 0 confirmed</td>
+          <td class="tx-col"><a href="https://cexplorer.io/tx/813d2f00fb61140a2eb9f72f353859d378c33f661e5b485d25204659c9fb357d" target="_blank" class="tx-link">813d2f00fb61140a...</a></td>
+        </tr>
+<tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q8vh9lfvmwjcyt644qj9reylr9m4f0pqq6h54vktd6y0lzfjk0z766j36hvuvvg5yc584xn8cgelmkxstjnu5gvzeessxpd077/schedule" target="_blank" class="addr">addr1q8vh9lfvmwjcyt644qj9reylr9m4f0pqq6h54vktd6y0lzfjk0z766j36hvuvvg5yc584xn8cgelmkxstjnu5gvzeessxpd077</a></td>
           <td>Thaw #0: redeemable, no tx_id, but 136.442728 NIGHT delivered 1x on-chain vs 0 confirmed</td>
           <td class="tx-col"><a href="https://cexplorer.io/tx/d3bced73615fc0b0784a9316fcb7736c3ffa6cc2299ad02f97a8f3b4b304b70b" target="_blank" class="tx-link">d3bced73615fc0b0...</a></td>
@@ -18468,6 +18728,11 @@
           <td class="tx-col"><a href="https://cexplorer.io/tx/ae19210a275ff329fb25c55caac5fe423fe8af56bfe9981c1f8108a0f5e54695" target="_blank" class="tx-link">ae19210a275ff329...</a></td>
         </tr>
 <tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q8gzrqx080g5fhscp0plu28pp86pkmrprysrlz0z5c56jvwd375wyqva4q5jvp0kcxq3ylu4zyfjfkj86737u5sxzdxsrn6a38/schedule" target="_blank" class="addr">addr1q8gzrqx080g5fhscp0plu28pp86pkmrprysrlz0z5c56jvwd375wyqva4q5jvp0kcxq3ylu4zyfjfkj86737u5sxzdxsrn6a38</a></td>
+          <td>Thaw #0: redeemable, no tx_id, but 133.549818 NIGHT delivered 1x on-chain vs 0 confirmed</td>
+          <td class="tx-col"><a href="https://cexplorer.io/tx/17bc061c11427ae44f10c6cc1a09a4d78418e9e1143e628d5302bab05da9638a" target="_blank" class="tx-link">17bc061c11427ae4...</a></td>
+        </tr>
+<tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q8eft5vyd9au477ps4s4x923azyadswyrrcl2jd6fnsk38eyyqxt6lrmc2h9hhcdz2g3a8ljmx6f5990pk64evhn8jqq4q986c/schedule" target="_blank" class="addr">addr1q8eft5vyd9au477ps4s4x923azyadswyrrcl2jd6fnsk38eyyqxt6lrmc2h9hhcdz2g3a8ljmx6f5990pk64evhn8jqq4q986c</a></td>
           <td>Thaw #0: redeemable, no tx_id, but 133.087353 NIGHT delivered 1x on-chain vs 0 confirmed</td>
           <td class="tx-col"><a href="https://cexplorer.io/tx/a1f8f8ea26d159cf5f3ada5e1cf3feab2ae11325870bb75209a52369aff8e28a" target="_blank" class="tx-link">a1f8f8ea26d159cf...</a></td>
@@ -18511,6 +18776,11 @@
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q8wcjzdstw69hm73squqmq3reluyucwh9040mltxk4lrgvmstggaezcx94cdh8s898ja5507z5dk9kg5rw9y2hq45fnqqfhyhm/schedule" target="_blank" class="addr">addr1q8wcjzdstw69hm73squqmq3reluyucwh9040mltxk4lrgvmstggaezcx94cdh8s898ja5507z5dk9kg5rw9y2hq45fnqqfhyhm</a></td>
           <td>Thaw #0: redeemable, no tx_id, but 130.702332 NIGHT delivered 1x on-chain vs 0 confirmed</td>
           <td class="tx-col"><a href="https://cexplorer.io/tx/524fe84b4f4ad61d21ed9d09e5052ce534e041c33119de7a99d341e65289b02d" target="_blank" class="tx-link">524fe84b4f4ad61d...</a></td>
+        </tr>
+<tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qyvyee4xav6s8uwdzdhtatzwpt8rl03ex8pd6r3ls6l9en63dfr8fy8mckdlvmhwk68kjkh0w8jrzux2ansccc0v6lvsum3cjm/schedule" target="_blank" class="addr">addr1qyvyee4xav6s8uwdzdhtatzwpt8rl03ex8pd6r3ls6l9en63dfr8fy8mckdlvmhwk68kjkh0w8jrzux2ansccc0v6lvsum3cjm</a></td>
+          <td>Thaw #0: redeemable, no tx_id, but 130.373277 NIGHT delivered 1x on-chain vs 0 confirmed</td>
+          <td class="tx-col"><a href="https://cexplorer.io/tx/2c4d663e0a5840ac489bece2cabf18e685b8894dea8dd2a009f0a6c7d8ce4dd5" target="_blank" class="tx-link">2c4d663e0a5840ac...</a></td>
         </tr>
 <tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q9h2z7fcl7z3jha4j6deklfuxpekmqfp7lh6gdr9dd7carwspfttgc5fqez2dy4dw0wsjxv2ccpsp85qusks8m5vwvfq54l42z/schedule" target="_blank" class="addr">addr1q9h2z7fcl7z3jha4j6deklfuxpekmqfp7lh6gdr9dd7carwspfttgc5fqez2dy4dw0wsjxv2ccpsp85qusks8m5vwvfq54l42z</a></td>
@@ -20403,6 +20673,11 @@
           <td class="tx-col"><a href="https://cexplorer.io/tx/2756fe637b333f11a7775c95f494f9a5322d0a8f1c4d54c2b98fcd8f0e96b62c" target="_blank" class="tx-link">2756fe637b333f11...</a></td>
         </tr>
 <tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qxclnjh9cv8dnndh77025ufmg8h4kjjrplmylqlrllqxr820vagwzk3er5f6ctj6ucl0vgjy0kfzn2anq5nvcrsnlssq8xsye8/schedule" target="_blank" class="addr">addr1qxclnjh9cv8dnndh77025ufmg8h4kjjrplmylqlrllqxr820vagwzk3er5f6ctj6ucl0vgjy0kfzn2anq5nvcrsnlssq8xsye8</a></td>
+          <td>Thaw #0: redeemable, no tx_id, but 41.331934 NIGHT delivered 1x on-chain vs 0 confirmed</td>
+          <td class="tx-col"><a href="https://cexplorer.io/tx/2af80cf34725e2e926b77eb7c9c67a612d4ec65dc18cd958e9e11f3ba47a007e" target="_blank" class="tx-link">2af80cf34725e2e9...</a></td>
+        </tr>
+<tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qy2vcpez5qna49pptrp0h7w5wv7v5eku6dpenkfq84ydyfr8mha34fy883x5kf6py0z4f99vjgxqwspp9rvz646ztjvqktrt0a/schedule" target="_blank" class="addr">addr1qy2vcpez5qna49pptrp0h7w5wv7v5eku6dpenkfq84ydyfr8mha34fy883x5kf6py0z4f99vjgxqwspp9rvz646ztjvqktrt0a</a></td>
           <td>Thaw #0: redeemable, no tx_id, but 41.286368 NIGHT delivered 1x on-chain vs 0 confirmed</td>
           <td class="tx-col"><a href="https://cexplorer.io/tx/e9805c98674354f128cd11d3ca41789d861a9319173d9bf63b4b7cddd4056fdb" target="_blank" class="tx-link">e9805c98674354f1...</a></td>
@@ -20436,6 +20711,11 @@
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qxx9y2ceq0dxu5xmy3a6lmprphulggcvzzzvlf4cp6z6jz4mf2t07ntr5yg7avysy28rrglgk7369943ty49tgyvx0js4rz4he/schedule" target="_blank" class="addr">addr1qxx9y2ceq0dxu5xmy3a6lmprphulggcvzzzvlf4cp6z6jz4mf2t07ntr5yg7avysy28rrglgk7369943ty49tgyvx0js4rz4he</a></td>
           <td>Thaw #0: redeemable, no tx_id, but 39.950834 NIGHT delivered 1x on-chain vs 0 confirmed</td>
           <td class="tx-col"><a href="https://cexplorer.io/tx/50facac4eefb444cae19c45cb50a79d012ebbdfd3c6e50e7d3a702a401896528" target="_blank" class="tx-link">50facac4eefb444c...</a></td>
+        </tr>
+<tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qxg7ns6da6fn7p9kdzy6r7hacf3wycnagrff49q0y0zmpgpla2fjrccz70cse56hl9ckan6aw9rtdm8lqheg3jg8f42q5kwrxc/schedule" target="_blank" class="addr">addr1qxg7ns6da6fn7p9kdzy6r7hacf3wycnagrff49q0y0zmpgpla2fjrccz70cse56hl9ckan6aw9rtdm8lqheg3jg8f42q5kwrxc</a></td>
+          <td>Thaw #0: redeemable, no tx_id, but 39.908345 NIGHT delivered 1x on-chain vs 0 confirmed</td>
+          <td class="tx-col"><a href="https://cexplorer.io/tx/2cd02dacccf3341220baa4bac3215a4bc1385ad54a9c096e2e23eb3d2a09dad7" target="_blank" class="tx-link">2cd02dacccf33412...</a></td>
         </tr>
 <tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q9w0rlau3c3jfknezxmlgs0tkfnvyshvde2cdkr0lvc9r6qhzu6qckwaxe8kqgnzh0l8f7pj04jzygt2v79rahlg94fsq24uy6/schedule" target="_blank" class="addr">addr1q9w0rlau3c3jfknezxmlgs0tkfnvyshvde2cdkr0lvc9r6qhzu6qckwaxe8kqgnzh0l8f7pj04jzygt2v79rahlg94fsq24uy6</a></td>
@@ -20508,6 +20788,11 @@
           <td class="tx-col"><a href="https://cexplorer.io/tx/bccc97e0840994dc3adeecad71e5d53897b66dbaf48cd6ab91df5e490c1d1081" target="_blank" class="tx-link">bccc97e0840994dc...</a></td>
         </tr>
 <tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q86nd8y75ves3m6gadf44n75qrfh4y0ghtylr9kjcxswxem995t5488fxtsa49hznk3kk8tz6gjplz64epuygs058ugqstym6f/schedule" target="_blank" class="addr">addr1q86nd8y75ves3m6gadf44n75qrfh4y0ghtylr9kjcxswxem995t5488fxtsa49hznk3kk8tz6gjplz64epuygs058ugqstym6f</a></td>
+          <td>Thaw #0: redeemable, no tx_id, but 36.293465 NIGHT delivered 1x on-chain vs 0 confirmed</td>
+          <td class="tx-col"><a href="https://cexplorer.io/tx/49ac7d30eac2e5fed9eb60b6c60748bd7aa722701ba7c55bd0e7d81b9045d2bd" target="_blank" class="tx-link">49ac7d30eac2e5fe...</a></td>
+        </tr>
+<tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qxw0uuhjzdr4cu3wxsp2svngpcyg5s3s34t4ym89ah3uudp2vukju9ym6g7egexpdnlx3zkw473ztd8hqlxh442tjywqjk0kvt/schedule" target="_blank" class="addr">addr1qxw0uuhjzdr4cu3wxsp2svngpcyg5s3s34t4ym89ah3uudp2vukju9ym6g7egexpdnlx3zkw473ztd8hqlxh442tjywqjk0kvt</a></td>
           <td>Thaw #0: redeemable, no tx_id, but 36.134941 NIGHT delivered 1x on-chain vs 0 confirmed</td>
           <td class="tx-col"><a href="https://cexplorer.io/tx/bdaa3ef48057bee1a3b129e0e9ec9effe2db8905759115131a7c03b0b65adb1a" target="_blank" class="tx-link">bdaa3ef48057bee1...</a></td>
@@ -20541,6 +20826,11 @@
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q8vt3ad7xp2n6x4lkw6q050kkwkngvv4pdcz55kfn5ct542hr285murtqpt6zx3a4juzsedfcyde5ss5dfkqshugttwqjsrdcm/schedule" target="_blank" class="addr">addr1q8vt3ad7xp2n6x4lkw6q050kkwkngvv4pdcz55kfn5ct542hr285murtqpt6zx3a4juzsedfcyde5ss5dfkqshugttwqjsrdcm</a></td>
           <td>Thaw #0: redeemable, no tx_id, but 34.294781 NIGHT delivered 1x on-chain vs 0 confirmed</td>
           <td class="tx-col"><a href="https://cexplorer.io/tx/82504ed23c786af50d82a3d8f1f1cf967c0cb5a2e116592e1f6734a7391b5059" target="_blank" class="tx-link">82504ed23c786af5...</a></td>
+        </tr>
+<tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qxx9d9snk44f9qrd4ys7yz77z7723u0t582wsz25xssaxu4pry8hmlzecfvpq4rlev2gdy73amjadcdj0lqy0fsd0dsspz3myx/schedule" target="_blank" class="addr">addr1qxx9d9snk44f9qrd4ys7yz77z7723u0t582wsz25xssaxu4pry8hmlzecfvpq4rlev2gdy73amjadcdj0lqy0fsd0dsspz3myx</a></td>
+          <td>Thaw #0: redeemable, no tx_id, but 33.959766 NIGHT delivered 1x on-chain vs 0 confirmed</td>
+          <td class="tx-col"><a href="https://cexplorer.io/tx/32872c1bec9474de1e77a353f43ceb42a49c6462f916cab69eb3648ed2160b2d" target="_blank" class="tx-link">32872c1bec9474de...</a></td>
         </tr>
 <tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qxxnny7ez4qjpjfz7t6sgnj0rpsqev6v5lrwqzn7lk0hz46z49q30t7fg6apusc30dtrc58a50s6c95nm9yufwjaeems9erre8/schedule" target="_blank" class="addr">addr1qxxnny7ez4qjpjfz7t6sgnj0rpsqev6v5lrwqzn7lk0hz46z49q30t7fg6apusc30dtrc58a50s6c95nm9yufwjaeems9erre8</a></td>
@@ -20586,6 +20876,11 @@
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q986cfazhwpjt4qnaaw26zszses5ggh48al4yjn94hxlyfsd2gpdvknvp74430xwykqcnuh8u2kal83a700pg5u545jq62yung/schedule" target="_blank" class="addr">addr1q986cfazhwpjt4qnaaw26zszses5ggh48al4yjn94hxlyfsd2gpdvknvp74430xwykqcnuh8u2kal83a700pg5u545jq62yung</a></td>
           <td>Thaw #0: redeemable, no tx_id, but 31.275400 NIGHT delivered 1x on-chain vs 0 confirmed</td>
           <td class="tx-col"><a href="https://cexplorer.io/tx/43be932af01510c349e05f3c5b984428969600d74042460a4cba06d3d930b7ed" target="_blank" class="tx-link">43be932af01510c3...</a></td>
+        </tr>
+<tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q9ujgr5w22xxnjfv9ckp89lmhv65p9a7rm8eeyfqy05vpmhcaknsraa7j7v4x0vgrknnrxpf0xxaff0l6u7yngn6wc2s895j5t/schedule" target="_blank" class="addr">addr1q9ujgr5w22xxnjfv9ckp89lmhv65p9a7rm8eeyfqy05vpmhcaknsraa7j7v4x0vgrknnrxpf0xxaff0l6u7yngn6wc2s895j5t</a></td>
+          <td>Thaw #0: redeemable, no tx_id, but 30.858840 NIGHT delivered 1x on-chain vs 0 confirmed</td>
+          <td class="tx-col"><a href="https://cexplorer.io/tx/602bef45eb768c23b117f4367f8d9b00c96a40a9072bb6261179a490b7cbae6c" target="_blank" class="tx-link">602bef45eb768c23...</a></td>
         </tr>
 <tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q9ewaqm6z68e4cnwvn48c67u6p75yf9ky6tgr9qzt4584qrmrwejakt58wjfdcaqqxa2wp5dv5sgfcxtw4lt0dnnwfmq0m7zvl/schedule" target="_blank" class="addr">addr1q9ewaqm6z68e4cnwvn48c67u6p75yf9ky6tgr9qzt4584qrmrwejakt58wjfdcaqqxa2wp5dv5sgfcxtw4lt0dnnwfmq0m7zvl</a></td>
@@ -21113,6 +21408,11 @@
           <td class="tx-col"><a href="https://cexplorer.io/tx/e182358523d659dd5b5af5e3b4c0f5ade50cb5bed74022d6983e932ef2e3af85" target="_blank" class="tx-link">e182358523d659dd...</a></td>
         </tr>
 <tr>
+          <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1qx02qdl0y0zpe5khy8htkq007782k8z6z5tmqfh6vks5540caknsraa7j7v4x0vgrknnrxpf0xxaff0l6u7yngn6wc2sr0slku/schedule" target="_blank" class="addr">addr1qx02qdl0y0zpe5khy8htkq007782k8z6z5tmqfh6vks5540caknsraa7j7v4x0vgrknnrxpf0xxaff0l6u7yngn6wc2sr0slku</a></td>
+          <td>Thaw #0: redeemable, no tx_id, but 9.507367 NIGHT delivered 1x on-chain vs 0 confirmed</td>
+          <td class="tx-col"><a href="https://cexplorer.io/tx/2050b5abfc141531e1bc315587aa4802b2b93203481951a5e34a12424e07a54b" target="_blank" class="tx-link">2050b5abfc141531...</a></td>
+        </tr>
+<tr>
           <td><a href="https://mainnet.prod.gd.midnighttge.io/thaws/addr1q9w8hfsljqjuk77c8g00rth6wj36gl9lhcpremx4cz9gjvqffm7hzhvufx34e750m6wqx4jy3873uz0ezxksy4nry5sqzydvnf/schedule" target="_blank" class="addr">addr1q9w8hfsljqjuk77c8g00rth6wj36gl9lhcpremx4cz9gjvqffm7hzhvufx34e750m6wqx4jy3873uz0ezxksy4nry5sqzydvnf</a></td>
           <td>Thaw #0: redeemable, no tx_id, but 7.870937 NIGHT delivered 1x on-chain vs 0 confirmed</td>
           <td class="tx-col"><a href="https://cexplorer.io/tx/8f6b944dc67309701991d4fb9dca4e9d7e1b1c8cd5bb690bdaba9b002d4146e0" target="_blank" class="tx-link">8f6b944dc6730970...</a></td>
@@ -21291,7 +21591,7 @@
       </details>
 </div>
 
-<p class="generated">Generated at 2026-03-17T10:40:02.216Z &middot; Last synced block: 13170230</p>
+<p class="generated">Generated at 2026-03-18T19:53:57.324Z &middot; Last synced block: 13176102</p>
 </div>
 </body>
 </html>
