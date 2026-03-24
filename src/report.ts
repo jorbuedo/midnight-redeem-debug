@@ -128,22 +128,26 @@ const detectDiscrepancies = (db: Db): Discrepancy[] => {
       }
     }
 
-    if (thaws.length >= 2 && redeemTxs.length > 0) {
+    if (thaws.length >= 2) {
+      // Use thaw #0 schedule amount as baseline (not on-chain delivery, which may already be doubled)
+      const thaw0 = thaws.find((t) => t.thaw_index === 0)
       const firstRedeem = redeemTxs[0]
-      if (firstRedeem?.night_to_eligible) {
-        const firstThawAmount = BigInt(firstRedeem.night_to_eligible)
-        if (firstThawAmount > 0n) {
-          for (const thaw of thaws) {
-            const thawAmount = BigInt(thaw.amount)
-            if (thawAmount > (firstThawAmount * 120n) / 100n) {
-              discrepancies.push({
-                ...base,
-                address: addr.address,
-                type: 'doubled-amount',
-                detail: `Thaw #${thaw.thaw_index}: schedule=${formatNight(thawAmount)} but first thaw delivered ${formatNight(firstThawAmount)} (${thaw.status})`,
-                txIds: firstRedeem ? [firstRedeem.tx_hash] : [],
-              })
-            }
+      const baselineAmount = thaw0 ? BigInt(thaw0.amount) : firstRedeem?.night_to_eligible ? BigInt(firstRedeem.night_to_eligible) : 0n
+      if (baselineAmount > 0n) {
+        for (const thaw of thaws) {
+          if (thaw.thaw_index === 0) continue
+          const thawAmount = BigInt(thaw.amount)
+          if (thawAmount > (baselineAmount * 120n) / 100n) {
+            const deliveredNote = firstRedeem?.night_to_eligible
+              ? `, on-chain delivered ${formatNight(BigInt(firstRedeem.night_to_eligible))}`
+              : ''
+            discrepancies.push({
+              ...base,
+              address: addr.address,
+              type: 'doubled-amount',
+              detail: `Thaw #${thaw.thaw_index}: schedule=${formatNight(thawAmount)} vs thaw #0=${formatNight(baselineAmount)}${deliveredNote} (${thaw.status})`,
+              txIds: firstRedeem ? [firstRedeem.tx_hash] : [],
+            })
           }
         }
       }
